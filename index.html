@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		/* Primary Styling*/
+		body {
+			background-color: black;
+			color: gray;
+
+		}
+
+		div {
+			background-color: #242424;
+			opacity: 0.90;
+			margin-bottom: 10px;
+
+		}
+
+		h1 {
+			color: red;
+			text-align: center;
+
+		}
+
+		/* Distinct Styling */
+
+		#div_title {
+			background-color: black;
+			height: 80px;
+			width: 500px;
+		}
+
+		#div_data {
+			height: 50px;
+			width: 500px;
+
+
+		}
+
+		#div_display {
+			height: 150px;
+			width: 500px;
+		}
+
+		#display1{
+		}
+
+		#display2{
+			opacity: 0.75;
+		}
+
+		#display3{
+			opacity: 0.50
+		}
+
+		#div_buttonSet {
+			height: 50px;
+			width: 500px;
+			display: inline-block;
+
+		}
+
+		.button {
+			width: 33%;
+			height: 100%;
+			display: inline-block;
+
+			color: dark red;
+		}
+
+		.btn-group button {
+			background-color: #880000;
+			/* Green background */
+			border: 1px solid red;
+			/* Green border */
+			color: white;
+			/* White text */
+			padding: 10px 24px;
+			/* Some padding */
+			cursor: pointer;
+			/* Pointer/hand icon */
+			float: left;
+			/* Float the buttons side by side */
+		}
+
+		.btn-group button:not(:last-child) {
+			border-right: none;
+			/* Prevent double borders */
+		}
+
+		/* Clear floats (clearfix hack) */
+		.btn-group:after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		/* Add a background color on hover */
+		.btn-group button:hover {
+			background-color: #3e8e41;
+		}
+
+		.btn {
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			border: none;
+			border-radius: 15px;
+			box-shadow: 0 9px #999;
+			height: 95%;
+
+		}
+
+		.btn:hover {
+			background-color: #3e8e41
+		}
+
+		.btn:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+
+		#datar1 > p{
+			color:red;
+			float: left;
+			padding-left: 20px;
+		}
+
+		
+
+	</style>
+
+
+
+
+</head>
+
+<body>
+	<div id="div_title">
+		<h1> Taki E G G Simulator v.2 </h1>
+	</div>
+	<div id="div_data">
+		<div id="datar1">
+			<p id="egg_display"> Eggs: 0 </p>
+			<p id="collector_display"></p>
+			<p id="collector_price_display"></p>
+		</div>
+	</div>
+	<div id="div_display">
+		<p id="display3"></p>
+		<p id="display2"></p>
+		<p id="display1">It's a calm day. Work is slow, the sun is shining, and wait- Butters has brought you something. It's... an
+			egg?</p>
+	</div>
+	<div id="div_buttonSet" class="btn-group">
+		<button id="button1" class="btn" style="width:50%" onclick="btn1()"> Grab Egg </button>
+		<button id="button2" class="btn" style="width:50%" onclick="btn2()"> Buy Collector</button>
+
+	</div>
+
+
+</body>
+
+<script>
+	//Variables
+	var eggTotal = 0;
+	var tickrate = 1;
+	var eggpertick = 0;
+	var collectorTotal = 0;
+	var collectorCostMultiplier = 1.15;
+	var collectorSpeedMultiplier = 1.5;
+	var collectorPrice = 10;
+	//const events = [10, 15, 25, 40, 65, 105, 170, 275, 445, 720, 1165, 1885, 3050, 4935, 7985, 12920, 20905, 33825, 54730,1000000,1000001];
+	var events = [10];
+	const eventsmuliplier = 1.58; 
+	//19 Events total
+	const eventdesc = [
+		"Where... is she getting these from?",
+		"You're starting to run out of desk space... surely there's somewhere you can put them for now.",
+		"Your desk is covered in eggs. Where do these even come from?",
+		"You've started to put them in bins outside. The neighbors are staring at you from the windows.",
+		"You've asked, but nobody knows. There are no chickens for miles, and she's never gone that long.",
+		"Butters brings in another egg. At this point, you've set up cameras to watch her at all times.",
+		"Your weekly omelette nights are a huge hit. You've started to enjoy the taste, but you're not happy about it.",
+		"You become extremely interested in shorting egg stocks.",
+		"The business license arrives in the mail. You start to sell Butters's Farm Fresh Eggs in local stores.",
+		"Customer reviews are in, and they're happier than ever. The only complaint is the dog hair in every carton.",
+		"The market begins to oversaturate. Egg prices decline. You regret quitting your job... just a little bit.",
+		"You're noticing a new smell. Butters stares up at you before dropping another egg from her mouth.",
+		"You rent a storage locker on the outskirts of town. The smell is unbearable. The eggs accelerate.",
+		"The Eggs Accelerate.",
+		"The. Eggs. ACCELERATE.",
+		"The storage locker can no longer contain the eggs. You purchase a warehouse, and set up a long chute.",
+		"The City Health Inspector came today. He had an accident in the warehouse. They never found him among the eggs.",
+		"You mutter to yourself over and over \"You have to crack a few eggs... To make an omelette... You have to crack a few eggs.\"",
+		"Butters smiles up at you. You smile back at her. She brings you an egg. This is the end.",
+		"Bruh stop. The game is over."
+	];
+	//generateEvents//
+	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
+	function generateEvents(){
+		
+		for(i = 1; i < eventdesc.length; i++){
+			eventnum = Math.floor(events[i-1] * eventsmuliplier);  
+			events.push(eventnum)
+			console.log("Event added-> " + i + ": " + eventnum);
+
+		}
+		
+		events.push(1000000);
+		console.log(events);
+		console.log(eventdesc);
+	}
+
+
+	//checkEggEvent//
+	//Check current total against events array. Runs through the entire events array every single run of the function.
+	//Calls the displayUpdate function when number is between i and i+1. 
+	function checkEggEvent(){
+		for (let i = 0; i < events.length; i++) {
+			
+				if (eggTotal > events[i] && eggTotal < events[i+1] ) { displayUpdate(i) }
+			
+		}
+	}
+	//onClick for btn1, Grab Egg. I'll rename that eventually. 
+	function btn1() {
+		eggTotal += 1;
+		checkEggEvent();
+		updateEggDisplay();
+
+	}
+	//onClick for btn2, Grab Egg. I'll rename this NEVER. 
+	//Probably should separate this out into a methhead. 
+	function btn2() {
+
+		if (eggTotal >= collectorPrice) {
+			buycollector();
+			eggTotal -= collectorPrice;
+			collectorPrice = Math.floor(collectorCostMultiplier * collectorPrice);
+			updateCollectorPriceDisplay();
+			updateEggDisplay();
+		}
+
+	}
+	//buyCollector//
+	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
+	function buycollector() {
+
+		collectorTotal += 1;
+		if (collectorTotal == 1) { document.getElementById("div_display").innerHTML = "You've purchased your first collector. Now, she has somewhere to put them."; }
+		updateCollectorDisplay();
+		
+	}
+	
+	function displayUpdate(number) {
+		var currenttext = document.getElementById("display1").innerHTML;
+		if(currenttext != eventdesc[number]){
+			document.getElementById("display3").innerHTML = document.getElementById("display2").innerHTML;
+			document.getElementById("display2").innerHTML = document.getElementById("display1").innerHTML;	
+			document.getElementById("display1").innerHTML = eventdesc[number]
+		}
+
+	}
+	function updateCollectorPriceDisplay() {
+		document.getElementById("collector_price_display").innerHTML = "Collector Price: " + collectorPrice;
+	}
+
+	function updateEggDisplay() {
+		document.getElementById("egg_display").innerHTML = "Eggs: " + eggTotal;
+	}
+
+	function updateCollectorDisplay() {
+		document.getElementById("collector_display").innerHTML = "Collectors: " + collectorTotal;
+	}
+	//eggtick//
+	//Butters gives you an egg.//
+	//adds eggs to total, checks for events, updates display.
+	function eggtick(num) {
+			eggTotal += num;
+			checkEggEvent();
+			updateEggDisplay();
+	}
+	function startup(){
+			generateEvents()
+
+	}
+	startup()
+
+	//I don't know why this works, but it do.
+	window.setInterval(function(){
+		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier ))
+
+		
+	}, 1000);
+
+
+
+	
+</script>
+
+
+
+</html>
