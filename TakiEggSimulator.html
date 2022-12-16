@@ -165,7 +165,11 @@
 </body>
 
 <script>
+	
+	
+	
 	//Variables
+	
 	var eggTotal = 0;
 	var tickrate = 1;
 	var eggpertick = 0;
@@ -199,6 +203,9 @@
 		"Butters smiles up at you. You smile back at her. She brings you an egg. This is the end.",
 		"Bruh stop. The game is over."
 	];
+
+
+
 	//generateEvents//
 	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
 	function generateEvents(){
@@ -284,20 +291,49 @@
 			checkEggEvent();
 			updateEggDisplay();
 	}
+
+	//saveState()//
+	//Create a save object, populate with variables, load into localstorage as a json string. 
+	function saveState(){
+		var save = {
+			eggTotal : eggTotal,
+			collectorTotal : collectorTotal
+		}
+		
+		localStorage.setItem("save", JSON.stringify(save));
+
+	}
+	//loadState()//
+	//Creates a savegame object, recalls the Save from localstorage and de-jsons it. if it's not null, load data.
+	function loadState(){
+		var savegame = JSON.parse(localStorage.getItem("save"));
+		if(savegame != null){
+		if(typeof savegame.eggTotal !== "undefined") { eggTotal = savegame.eggTotal}
+		if(typeof savegame.collectorTotal !== "undefined") { collectorTotal = savegame.collectorTotal}
+		}
+
+	}
+
+
+
 	function startup(){
-			generateEvents()
+			loadState();
+			generateEvents();
 
 	}
 	startup()
 
 	//I don't know why this works, but it do.
 	window.setInterval(function(){
-		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier ))
+		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier ));
+		saveState();
 
 		
 	}, 1000);
 
 
+
+	// do my inconsistent semicolons infuriate you? good. //
 
 	
 </script>
