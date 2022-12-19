@@ -11,10 +11,7 @@
 		}
 
 		div {
-			background-color: #242424;
-			opacity: 0.90;
-			margin-bottom: 10px;
-
+			
 		}
 
 		h1 {
@@ -25,38 +22,61 @@
 
 		/* Distinct Styling */
 
+		.panel{
+
+			width: 33%;
+			display: inline-block;
+			opacity: 0.9;
+			border-width: 3px;
+			border-color: red;
+		}
+
+		#main_frame {
+
+
+		}
+
+		#main_frame>div {
+			background-color: #242424;
+			opacity: 0.90;
+			margin-bottom: 10px;
+			width: 100%;
+
+		}
+
 		#div_title {
 			background-color: black;
 			height: 80px;
-			width: 500px;
+			width: 100%;
 		}
 
 		#div_data {
 			height: 50px;
-			width: 500px;
+			width: 100%;
 
 
 		}
 
 		#div_display {
 			height: 150px;
-			width: 500px;
+			width: 100%px;
 		}
 
-		#display1{
+		#display1 {
+			opacity: 1.0;
 		}
 
-		#display2{
+		#display2 {
 			opacity: 0.75;
 		}
 
-		#display3{
+		#display3 {
 			opacity: 0.50
 		}
 
-		#div_buttonSet {
+		.btn-group {
 			height: 50px;
-			width: 500px;
+			width: 100%;
 			display: inline-block;
 
 		}
@@ -76,7 +96,7 @@
 			/* Green border */
 			color: white;
 			/* White text */
-			padding: 10px 24px;
+			padding: 0px 0px;
 			/* Some padding */
 			cursor: pointer;
 			/* Pointer/hand icon */
@@ -109,7 +129,7 @@
 			border: none;
 			border-radius: 15px;
 			box-shadow: 0 9px #999;
-			height: 95%;
+			height: 100%;
 
 		}
 
@@ -123,14 +143,16 @@
 			transform: translateY(4px);
 		}
 
-		#datar1 > p{
-			color:red;
+		#datar1>p {
+			color: red;
 			float: left;
 			padding-left: 20px;
 		}
 
-		
+		#settings_frame {
+			display: none;
 
+		}
 	</style>
 
 
@@ -139,49 +161,87 @@
 </head>
 
 <body>
-	<div id="div_title">
-		<h1> Taki E G G Simulator v.4 </h1>
-		<h6>Now with Saving!</h6>
-	</div>
-	<div id="div_data">
-		<div id="datar1">
-			<p id="egg_display"> Eggs: 0 </p>
-			<p id="collector_display">Collectors: 0</p>
-			<p id="collector_price_display">Collector Price: 10 </p>
+	<div id="third_panel_left" class="panel">
+		<div id="div_title">
+			<h1> Taki E G G Simulator  </h1>
+			<h6>The great UI update. Now with settings! v0.0.5</h6>
 		</div>
-	</div>
-	<div id="div_display">
-		<p id="display3"></p>
-		<p id="display2"></p>
-		<p id="display1">It's a calm day. Work is slow, the sun is shining, and wait- Butters has brought you something. It's... an
-			egg?</p>
-	</div>
-	<div id="div_buttonSet" class="btn-group">
-		<button id="button1" class="btn" style="width:50%" onclick="btn1()"> Grab Egg </button>
-		<button id="button2" class="btn" style="width:50%" onclick="btn2()"> Buy Collector</button>
+		<div id="main_frame">
+			<div id="div_data">
+				<div id="datar1">
+					<p id="egg_display"> Eggs: 0 </p>
+					<p id="collector_display">Collectors: 0</p>
+					<p id="collector_price_display">Collector Price: 10 </p>
+					<p id="money_display" style="display:none;"> Money: 0</p>
+					<p id="egg_sale_price_display" style="display:none;">Egg Price: 0</p>
+				</div>
+			</div>
+			<div id="div_display">
+				<p id="display3"></p>
+				<p id="display2"></p>
+				<p id="display1">It's a calm day. Work is slow, the sun is shining, and wait- Butters has brought you
+					something. It's... an
+					egg?</p>
+			</div>
+			<div id="div_buttonSet1" class="btn-group">
+				<button id="btnGrabEgg" class="btn" style="width:33.3%" onclick="btnGrabEgg()"> Grab Egg </button>
+				<button id="btnBuyCollector" class="btn" style="width:33.3%" onclick="btnBuyCollector()"> Buy Collector</button>
+				<button id="btnTBD" class="btn" style="width:33.3%"> Locked </button>
+			</div>
+			<br>
+			<div id="div_buttonSet1" class="btn-group">
+				<button id="btnSellEggs" class="btn" style="width:33.3%" onclick=""> Locked </button>
+				<button id="btnTBD" class="btn" style="width:33.3%" onclick=""> Locked </button>
+				<button id="btnSettings" class="btn" style="width:33.3%" onclick="goto_settings()"> Settings </button>
+				
+			</div>
+
+		</div>
+		<div id="settings_frame">
+			<div id="settings_pane">
+				<H1> Settings </H1>
+				<p> This will contain some other settings eventually. If you press Nuke, it will reload the page and wipe your progress. Think carefully. There is no confirm text.</p>
+				<br>
+				<div class="btn-group" style="padding-bottom: 20px;">
+				<button id="btnNuke" class="btn" style="width:33.3%" onclick="NukeProgress()"> Nuke</button>
+				</div>
+				<br>
+				<div class="btn-group">
+					<button id="btn_settings_back" class="btn" style="width:33.3%"
+						onclick="btn_settings_back()">Back</button>
+				</div>
+			</div>
+		</div>
 
 	</div>
-
-
+	<div id="third_panel_mid" class="panel"> </div>
+	<div id="third_panel_right" class="panel"> </div>  
 </body>
 
 <script>
-	
-	
-	
+
+
+
 	//Variables
-	
+
 	var eggTotal = 0;
 	var tickrate = 1;
 	var eggpertick = 0;
+	//collector vars
 	var collectorTotal = 0;
 	var collectorCostMultiplier = 1.15;
 	var collectorSpeedMultiplier = 1.5;
 	var collectorPrice = 10;
-	//const events = [10, 15, 25, 40, 65, 105, 170, 275, 445, 720, 1165, 1885, 3050, 4935, 7985, 12920, 20905, 33825, 54730,1000000,1000001];
+
+	//sales vars
+	var moneyTotal = 0;
+	var eggSellPrice =0.17;
+	var eggSalesUnlocked = false;
+
+	
 	var events = [10];
-	const eventsmuliplier = 1.58; 
-	//19 Events total
+	const eventsmuliplier = 1.58;
+	
 	const eventdesc = [
 		"Where... is she getting these from?",
 		"You're starting to run out of desk space... surely there's somewhere you can put them for now.",
@@ -207,17 +267,34 @@
 
 
 
+	function goto_settings() {
+
+		document.getElementById("settings_frame").style.display = "initial";
+		document.getElementById("main_frame").style.display = "none";
+
+
+	}
+
+	function btn_settings_back() {
+
+		document.getElementById("settings_frame").style.display = "none";
+		document.getElementById("main_frame").style.display = "initial";
+
+
+	}
+
+
 	//generateEvents//
 	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
-	function generateEvents(){
-		
-		for(i = 1; i < eventdesc.length; i++){
-			eventnum = Math.floor(events[i-1] * eventsmuliplier);  
+	function generateEvents() {
+
+		for (i = 1; i < eventdesc.length; i++) {
+			eventnum = Math.floor(events[i - 1] * eventsmuliplier);
 			events.push(eventnum)
-			console.log("Event added-> " + i + ": " + eventnum);
+
 
 		}
-		
+
 		events.push(1000000);
 		console.log(events);
 		console.log(eventdesc);
@@ -227,29 +304,62 @@
 	//checkEggEvent//
 	//Check current total against events array. Runs through the entire events array every single run of the function.
 	//Calls the displayUpdate function when number is between i and i+1. 
-	function checkEggEvent(){
+	function checkEggEvent() {
 		for (let i = 0; i < events.length; i++) {
-			
-				if (eggTotal > events[i] && eggTotal < events[i+1] ) { displayUpdate(eventdesc[i]) }
-			
+
+			if (eggTotal > events[i] && eggTotal < events[i + 1]) { updateFeedDisplay(eventdesc[i]) }
+
+		}
+		if(eggTotal >= 400){
+
+			startEggSales();
+	
 		}
 	}
-	//onClick for btn1, Grab Egg. I'll rename that eventually. 
-	function btn1() {
+
+	function startEggSales(){
+			eggSalesUnlocked = true;
+			document.getElementById("btnSellEggs").onclick = function(){btnSellEggs()};
+			document.getElementById("btnSellEggs").innerHTML= "Sell Eggs";
+
+	}
+
+	//onClick Grab Egg. 
+	function btnGrabEgg() {
+		console.info("clicked btnGrabEgg");
 		eggTotal += 1;
 		checkEggEvent();
 		updateEggDisplay();
 
 	}
-	//onClick for btn2, Grab Egg. I'll rename this NEVER. 
-	//Probably should separate this out into a methhead. 
-	function btn2() {
+	//onClick for btnBuyCollector. I'll rename this NEVER. Just kidding, I renamed it 12/19/2022 
 
+	function btnBuyCollector() {
+		console.info("clicked btnBuyCollector");
 		buycollector();
 
 	}
 
-	
+	function btnSellEggs()
+	{
+
+		sellEggs();
+
+	}
+
+
+	function NukeProgress() {
+
+		//𓀥    𓁆 𓀕
+		//
+		//𓁆 𓀟   𓀣 𓁀
+
+		localStorage.clear();
+		location.reload();
+
+	}
+
+
 
 	//buyCollector//
 	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
@@ -258,30 +368,59 @@
 		if (eggTotal >= collectorPrice) {
 			eggTotal -= collectorPrice;
 			collectorTotal += 1;
-			if (collectorTotal == 1) { displayUpdate("You've purchased your first collector. Now, she has somewhere to put them."); }
+			if (collectorTotal == 1) { updateFeedDisplay("You've purchased your first collector. Now, she has somewhere to put them."); }
 			collectorPrice = Math.floor(collectorCostMultiplier * collectorPrice);
 			updateCollectorDisplay();
 			updateCollectorPriceDisplay();
 			updateEggDisplay();
 		}
 	}
-	
-	function displayUpdate(eventtext) {
+
+	function sellEggs(){
+
+		if(eggTotal > 0 ){
+			eggvalue = eggTotal * eggSellPrice;
+			moneyTotal += eggvalue;
+			updateFeedDisplay("You have sold " + eggTotal + " eggs, at a total value of $" + eggvalue.toFixed(2) + ".");
+
+
+			eggTotal = 0;
+		}
+		updateMoneyDisplay();
+		updateEggPriceDisplay();
+		updateEggDisplay();
+		
+	}
+
+	function updateFeedDisplay(eventtext) {
 		var currenttext = document.getElementById("display1").innerHTML;
-		if(currenttext != eventtext){
+		if (currenttext != eventtext) {
 			document.getElementById("display3").innerHTML = document.getElementById("display2").innerHTML;
-			document.getElementById("display2").innerHTML = document.getElementById("display1").innerHTML;	
+			document.getElementById("display2").innerHTML = document.getElementById("display1").innerHTML;
 			document.getElementById("display1").innerHTML = eventtext
 		}
 
 	}
-	function updateCollectorPriceDisplay() {
-		document.getElementById("collector_price_display").innerHTML = "Collector Price: " + collectorPrice;
-	}
+
 
 	function updateEggDisplay() {
 		document.getElementById("egg_display").innerHTML = "Eggs: " + eggTotal;
 	}
+
+	function updateCollectorPriceDisplay() {
+		document.getElementById("collector_price_display").innerHTML = "Collector Price: " + collectorPrice;
+	}
+
+	function updateMoneyDisplay() {
+		document.getElementById("money_display").innerHTML = "Money: " + moneyTotal.toFixed(2);
+		document.getElementById("money_display").style.display = "initial";
+	}
+
+	function updateEggPriceDisplay() {
+		document.getElementById("egg_sale_price_display").innerHTML = "Egg price: " + eggSellPrice;
+		document.getElementById("egg_sale_price_display").style.display = "initial";
+	}
+
 
 	function updateCollectorDisplay() {
 		document.getElementById("collector_display").innerHTML = "Collectors: " + collectorTotal;
@@ -290,72 +429,102 @@
 	//Butters gives you an egg.//
 	//adds eggs to total, checks for events, updates display.
 	function eggtick(num) {
-			eggTotal += num;
-			checkEggEvent();
-			updateEggDisplay();
+		eggTotal += num;
+		checkEggEvent();
+		updateEggDisplay();
 	}
 
-	function updateAllDisplays(){
+	function updateAllDisplays() {
 		console.log("Display Update");
 		updateCollectorDisplay();
 		updateCollectorPriceDisplay();
 		updateEggDisplay();
+
+		if(eggSalesUnlocked == true){
+		updateEggPriceDisplay;
+		updateMoneyDisplay;
+		}
 
 	}
 
 
 	//saveState()//
 	//Create a save object, populate with variables, load into localstorage as a json string. 
-	function saveState(){
+	function saveState() {
 		var save = {
-			eggTotal : eggTotal,
-			collectorTotal : collectorTotal,
-			collectorPrice : collectorPrice
+			eggTotal: eggTotal,
+			collectorTotal: collectorTotal,
+			collectorPrice: collectorPrice,
+			eggSellPrice : eggSellPrice,
+			moneyTotal : moneyTotal,
+			eggSalesUnlocked: eggSalesUnlocked,
+			display1: document.getElementById("display1").innerHTML,
+			display2: document.getElementById("display2").innerHTML,
+			display3: document.getElementById("display3").innerHTML
+
 		}
-		
+
 		localStorage.setItem("save", JSON.stringify(save));
 
 	}
 	//loadState()//
 	//Creates a savegame object, recalls the Save from localstorage and de-jsons it. if it's not null, load data.
-	function loadState(){
+	function loadState() {
 		var savegame = JSON.parse(localStorage.getItem("save"));
-		if(savegame != null){
-		if(typeof savegame.eggTotal !== "undefined") { eggTotal = savegame.eggTotal}
-		if(typeof savegame.collectorTotal !== "undefined") { collectorTotal = savegame.collectorTotal}
-		if(typeof savegame.collectorPrice !== "undefined") { collectorPrice = savegame.collectorPrice}
+		if (savegame != null) {
+			if (typeof savegame.eggTotal !== "undefined") { eggTotal = savegame.eggTotal }
+			if (typeof savegame.collectorTotal !== "undefined") { collectorTotal = savegame.collectorTotal }
+			if (typeof savegame.collectorPrice !== "undefined") { collectorPrice = savegame.collectorPrice }
+			if (typeof savegame.eggSellPrice !== "undefined") { eggSellPrice = savegame.eggSellPrice }
+			if (typeof savegame.moneyTotal !== "undefined") { moneyTotal = savegame.moneyTotal }
+			if (typeof savegame.eggSalesUnlocked !== "undefined") { eggSalesUnlocked = savegame.eggSalesUnlocked }
+			if (typeof savegame.display1 !== "undefined") { document.getElementById("display1").innerHTML = savegame.display1 }
+			if (typeof savegame.display2 !== "undefined") { document.getElementById("display2").innerHTML = savegame.display2 }
+			if (typeof savegame.display3 !== "undefined") { document.getElementById("display3").innerHTML = savegame.display3 }
+
 		}
 
 		updateAllDisplays();
+		logLoad();
+
+	}
+
+	function logLoad() {
+		console.log("Loaded eggTotal: " + eggTotal);
+		console.log("Loaded collectorTotal: " + collectorTotal);
+		console.log("Loaded collectorPrice: " + collectorPrice);
+		console.log("Loaded eggSellPrice: " + eggSellPrice);
+		console.log("Loaded moneyTotal: " + moneyTotal);
+		console.log("Loaded eggSalesUnlocked: " + eggSalesUnlocked);
+		console.log("Loaded display1: " + display1);
+		console.log("Loaded display2: " + display2);
+		console.log("Loaded display3: " + display3);
 
 	}
 
 
-
-	function startup(){
-			loadState();
-			
-			generateEvents();
+	function startup() {
+		loadState();
+		generateEvents();
 
 	}
 	startup()
 
 	//I don't know why this works, but it do.
-	window.setInterval(function(){
-		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier ));
+	window.setInterval(function () {
+		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier));
 		saveState();
 
-		
+
 	}, 1000);
 
 
 
 	// do my inconsistent semicolons infuriate you? good. //
 
-	
+
 </script>
 
 
 
 </html>
-
