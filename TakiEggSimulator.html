@@ -245,23 +245,25 @@
 	//Probably should separate this out into a methhead. 
 	function btn2() {
 
-		if (eggTotal >= collectorPrice) {
-			buycollector();
-			eggTotal -= collectorPrice;
-			collectorPrice = Math.floor(collectorCostMultiplier * collectorPrice);
-			updateCollectorPriceDisplay();
-			updateEggDisplay();
-		}
+		buycollector();
 
 	}
+
+	
+
 	//buyCollector//
 	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
 	function buycollector() {
 
-		collectorTotal += 1;
-		if (collectorTotal == 1) { displayUpdate("You've purchased your first collector. Now, she has somewhere to put them."); }
-		updateCollectorDisplay();
-		
+		if (eggTotal >= collectorPrice) {
+			eggTotal -= collectorPrice;
+			collectorTotal += 1;
+			if (collectorTotal == 1) { displayUpdate("You've purchased your first collector. Now, she has somewhere to put them."); }
+			collectorPrice = Math.floor(collectorCostMultiplier * collectorPrice);
+			updateCollectorDisplay();
+			updateCollectorPriceDisplay();
+			updateEggDisplay();
+		}
 	}
 	
 	function displayUpdate(eventtext) {
@@ -293,12 +295,22 @@
 			updateEggDisplay();
 	}
 
+	function updateAllDisplays(){
+		console.log("Display Update");
+		updateCollectorDisplay();
+		updateCollectorPriceDisplay();
+		updateEggDisplay();
+
+	}
+
+
 	//saveState()//
 	//Create a save object, populate with variables, load into localstorage as a json string. 
 	function saveState(){
 		var save = {
 			eggTotal : eggTotal,
-			collectorTotal : collectorTotal
+			collectorTotal : collectorTotal,
+			collectorPrice : collectorPrice
 		}
 		
 		localStorage.setItem("save", JSON.stringify(save));
@@ -311,7 +323,10 @@
 		if(savegame != null){
 		if(typeof savegame.eggTotal !== "undefined") { eggTotal = savegame.eggTotal}
 		if(typeof savegame.collectorTotal !== "undefined") { collectorTotal = savegame.collectorTotal}
+		if(typeof savegame.collectorPrice !== "undefined") { collectorPrice = savegame.collectorPrice}
 		}
+
+		updateAllDisplays();
 
 	}
 
@@ -319,6 +334,7 @@
 
 	function startup(){
 			loadState();
+			
 			generateEvents();
 
 	}
@@ -342,3 +358,4 @@
 
 
 </html>
+
