@@ -1,0 +1,24 @@
+{
+    "events": [
+        
+        {"threshold": 10,
+        "eventtext": "Where... is she getting these from?",
+        "effect": "default",
+        "effectcode": 0},
+
+        {"threshold": 10,
+        "eventtext": "Where... is she getting these from?",
+        "effect": "default",
+        "effectcode": 0}
+
+        
+
+
+
+
+        
+
+
+    ]
+
+}

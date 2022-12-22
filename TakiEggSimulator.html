@@ -10,9 +10,7 @@
 
 		}
 
-		div {
-			
-		}
+		div {}
 
 		h1 {
 			color: red;
@@ -22,19 +20,22 @@
 
 		/* Distinct Styling */
 
-		.panel{
+		.panel {
 
-			width: 33%;
+			width: 25%;
 			display: inline-block;
 			opacity: 0.9;
 			border-width: 3px;
 			border-color: red;
 		}
 
-		#main_frame {
+		#third_panel_mid {
 
+			width: 50%;
 
 		}
+
+		#main_frame {}
 
 		#main_frame>div {
 			background-color: #242424;
@@ -43,6 +44,15 @@
 			width: 100%;
 
 		}
+
+		#upgrades_frame>div {
+			background-color: #242424;
+			opacity: 0.90;
+			margin-bottom: 10px;
+			width: 100%;
+
+		}
+
 
 		#div_title {
 			background-color: black;
@@ -53,13 +63,16 @@
 		#div_data {
 			height: 50px;
 			width: 100%;
-
+			background-color: #242424;
+			display: inline-block;
 
 		}
 
 		#div_display {
 			height: 150px;
-			width: 100%px;
+			width: 100%;
+			background-color: #242424;
+			display: inline-block;
 		}
 
 		#display1 {
@@ -153,6 +166,90 @@
 			display: none;
 
 		}
+
+		#upgrades_frame {
+			display: none;
+
+		}
+
+
+
+
+
+		/* Clear floats (clearfix hack) */
+		.btn-group:after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		/* Add a background color on hover */
+		.btn-group button:hover {
+			background-color: #3e8e41;
+		}
+
+
+		.upgradebtn {
+			height: 50px;
+			width: 50px;
+			background-color: red;
+			cursor: pointer;
+			font-size: 32px;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			border: none;
+			border-radius: 15px;
+			box-shadow: 0 9px #999;
+
+		}
+
+
+
+		.upgradebtn:hover {
+			background-color: #bdd63b
+		}
+
+		.upgradebtn:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+
+		.upgradeTableHeading {
+
+			padding: 10px;
+			font-size: 20px;
+			color: red;
+
+		}
+
+		#upgrades_rollover_display {
+			font-size: 20px;
+			text-align: center;
+			width: 90%;
+			height: 50px;
+			background-color: #101010;
+			color: red;
+			margin: auto;
+
+		}
+
+		.upgradebtn_purchased {
+			height: 50px;
+			width: 50px;
+			background-color: green;
+			cursor: pointer;
+			font-size: 32px;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			border: none;
+			border-radius: 15px;
+
+			transform: translateY(4px);
+
+		}
 	</style>
 
 
@@ -161,21 +258,23 @@
 </head>
 
 <body>
-	<div id="third_panel_left" class="panel">
+	<div id="third_panel_left" class="panel"> </div>
+	<div id="third_panel_mid" class="panel">
 		<div id="div_title">
-			<h1> Taki E G G Simulator  </h1>
-			<h6>The great UI update. Now with settings! v0.0.5</h6>
+			<h1> Taki E G G Simulator </h1>
+			<h5> The Eggventure Capitalist™️ update! v0.0.6</h5>
+		</div>
+		<div id="div_data">
+			<div id="datar1">
+				<p id="egg_display"> Eggs: 0 </p>
+				<p id="collector_display">Collectors: 0</p>
+				<p id="collector_price_display">Collector Price: $10 </p>
+				<p id="money_display"> Money: $0</p>
+				<p id="egg_sale_price_display">Egg Price: $0</p>
+			</div>
 		</div>
 		<div id="main_frame">
-			<div id="div_data">
-				<div id="datar1">
-					<p id="egg_display"> Eggs: 0 </p>
-					<p id="collector_display">Collectors: 0</p>
-					<p id="collector_price_display">Collector Price: 10 </p>
-					<p id="money_display" style="display:none;"> Money: 0</p>
-					<p id="egg_sale_price_display" style="display:none;">Egg Price: 0</p>
-				</div>
-			</div>
+
 			<div id="div_display">
 				<p id="display3"></p>
 				<p id="display2"></p>
@@ -185,37 +284,173 @@
 			</div>
 			<div id="div_buttonSet1" class="btn-group">
 				<button id="btnGrabEgg" class="btn" style="width:33.3%" onclick="btnGrabEgg()"> Grab Egg </button>
-				<button id="btnBuyCollector" class="btn" style="width:33.3%" onclick="btnBuyCollector()"> Buy Collector</button>
+				<button id="btnBuyCollector" class="btn" style="width:33.3%" onclick="btnBuyCollector()"> Buy
+					Collector</button>
 				<button id="btnTBD" class="btn" style="width:33.3%"> Locked </button>
 			</div>
 			<br>
 			<div id="div_buttonSet1" class="btn-group">
-				<button id="btnSellEggs" class="btn" style="width:33.3%" onclick=""> Locked </button>
-				<button id="btnTBD" class="btn" style="width:33.3%" onclick=""> Locked </button>
+				<button id="btnSellEggs" class="btn" style="width:33.3%" onclick="btnSellEggs()"> Locked: 12 Eggs
+				</button>
+				<button id="btnUpgrades" class="btn" style="width:33.3%" onclick="checkUpgradeFlag()"> Locked </button>
 				<button id="btnSettings" class="btn" style="width:33.3%" onclick="goto_settings()"> Settings </button>
-				
+
 			</div>
 
 		</div>
 		<div id="settings_frame">
 			<div id="settings_pane">
 				<H1> Settings </H1>
-				<p> This will contain some other settings eventually. If you press Nuke, it will reload the page and wipe your progress. Think carefully. There is no confirm text.</p>
+				<p> This will contain some other settings eventually. If you press Nuke, it will reload the page and
+					wipe your progress. Think carefully. There is no confirm text.</p>
 				<br>
 				<div class="btn-group" style="padding-bottom: 20px;">
-				<button id="btnNuke" class="btn" style="width:33.3%" onclick="NukeProgress()"> Nuke</button>
+					<button id="btnNuke" class="btn" style="width:33.3%" onclick="NukeProgress()"> Nuke</button>
 				</div>
 				<br>
 				<div class="btn-group">
 					<button id="btn_settings_back" class="btn" style="width:33.3%"
-						onclick="btn_settings_back()">Back</button>
+						onclick="goto_mainframe()">Back</button>
 				</div>
 			</div>
+
+		</div>
+
+		<div id="upgrades_frame">
+			<div id="upgrades_pane" onmouseenter="upgradesFeedUpdate('')">
+				<H1> Upgrades </H1>
+				<div id="upgrades_rollover_display"></div>
+
+				<table style="width: 100%;">
+					<tbody>
+						<tr>
+							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Egg Collector Upgrades
+							</td>
+						</tr>
+						<tr>
+
+							<!--
+								Artificial Egg-teligence
+								Non-Euclidean Ovoid Theory
+								
+							-->
+
+							<td><button id="btnUpgradeEC1" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC1','EC',1,500,1)"
+									onmouseenter="upgradesFeedUpdate('Recycled Egg Cartons',500,'Collector Speed +1.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC2" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC2','EC',2,2000,1)"
+									onmouseenter="upgradesFeedUpdate('Orphan-Proof Bins',2000,'Collector Speed +1.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC3" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC3','EC',3,6000,1.5)"
+									onmouseenter="upgradesFeedUpdate('Egg Sorting Trebuchets',6000,'Collector Speed +1.5')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC4" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC4','EC',4,20000,2)"
+									onmouseenter="upgradesFeedUpdate('Multi-Egg Conveyor Lanes',20000,'Collector Speed +2.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC5" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC5','EC',5,50000,2)"
+									onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000,'Collector Speed +2.0')""
+									onmouseleave=" upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC6" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC6','EC',6,250000,3)"
+									onmouseenter="upgradesFeedUpdate('Non-Euclidean Ovoid Theory',250000,'Collector Speed +3.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Economy Upgrades</td>
+						</tr>
+						<tr>
+							<!--
+								Word of Mouth
+								Local Advertising
+								Radio Advertisements								
+								Referral Program
+								Capital Injection
+
+							-->
+							<td><button id="btnUpgradeEU1" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU1','EU',1,1000,0.15)"
+									onmouseenter="upgradesFeedUpdate('Word of Mouth',1000,'Market Minimum +0.15')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU2" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU2','EU',1,4000,0.20)"
+									onmouseenter="upgradesFeedUpdate('Local Advertising',4000,'Market Minimum +0.20')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU3" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU3','EU',1,10000,0.25)"
+									onmouseenter="upgradesFeedUpdate('Morning Radio Show',10000,'Market Minimum +0.25')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU4" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU4','EU',1,30000,0.35)"
+									onmouseenter="upgradesFeedUpdate('Referral Program',30000,'Market Minimum +0.35')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU5" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU5','EU',1,65000,0.50)"
+									onmouseenter="upgradesFeedUpdate('Multi-Egg Marketing',65000,'Market Minimum +0.50')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU6" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU6','EU',1,350000,0.70)"
+									onmouseenter="upgradesFeedUpdate('Capital Injection',350000,'Market Minimum +0.70')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Automation Upgrades
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+
+
+				<div id="detail_stats_display">
+					<p id="collector_speed">Collector Speed: 0</p>
+					<p id="market_max"> Market Max: 0 </p>
+					<p id="market_min">Market Min: 0</p>
+
+				</div>
+
+				<div class="btn-group" style="padding-bottom: 20px;">
+
+				</div>
+				<br>
+				<div class="btn-group">
+					<button id="btn_settings_back" class="btn" style="width:33.3%"
+						onclick="goto_mainframe()">Back</button>
+				</div>
+			</div>
+
+
 		</div>
 
 	</div>
-	<div id="third_panel_mid" class="panel"> </div>
-	<div id="third_panel_right" class="panel"> </div>  
+
+	<div id="third_panel_right" class="panel"> </div>
 </body>
 
 <script>
@@ -235,14 +470,29 @@
 
 	//sales vars
 	var moneyTotal = 0;
-	var eggSellPrice =0.17;
-	var eggSalesUnlocked = false;
+	var eggSellPrice = 0.35;
+	var marketmin = 0.10;
+	var marketmax = 1.00;
 
-	
+
+	//Feature Flags
+	var eggSalesUnlocked = false;
+	var upgradesUnlocked = false;
+
+	var upgradeFlagEC = new Array(10).fill(false);
+	var upgradeFlagEU = new Array(10).fill(false);
+	var upgradeFlagAM = new Array(10).fill(false);
+
+
+
+	//upgrade vars
+	var upgradeid = null;
+
 	var events = [10];
-	const eventsmuliplier = 1.58;
-	
+	var eventsmuliplier = 1.58;
+
 	const eventdesc = [
+
 		"Where... is she getting these from?",
 		"You're starting to run out of desk space... surely there's somewhere you can put them for now.",
 		"Your desk is covered in eggs. Where do these even come from?",
@@ -251,18 +501,31 @@
 		"Butters brings in another egg. At this point, you've set up cameras to watch her at all times.",
 		"Your weekly omelette nights are a huge hit. You've started to enjoy the taste, but you're not happy about it.",
 		"You become extremely interested in shorting egg stocks.",
-		"The business license arrives in the mail. You start to sell Butters's Farm Fresh Eggs in local stores.",
+		"The eggs are a hit! You start to sell Butters's Farm Fresh Eggs in local stores.",
 		"Customer reviews are in, and they're happier than ever. The only complaint is the dog hair in every carton.",
+		"Prices seem to fluctuate often. You begin to start the process of crafting an egg cartel.",
 		"The market begins to oversaturate. Egg prices decline. You regret quitting your job... just a little bit.",
 		"You're noticing a new smell. Butters stares up at you before dropping another egg from her mouth.",
-		"You rent a storage locker on the outskirts of town. The smell is unbearable. The eggs accelerate.",
+		"You rent a storage locker on the outskirts of town. The smell is unbearable.",
+		"You've never seen this many eggs in your life. They occupy your every thought. You dream of eggs.",
+		"The eggs accelerate.",
 		"The Eggs Accelerate.",
 		"The. Eggs. ACCELERATE.",
+		"It's always been egg.",
+		"༼ つ ◕_◕ ༽つ 🥚",
+		"“This recipe is certainly silly. It says to separate the eggs, but it doesn't say how far to separate them.” - Gracie Allen",
 		"The storage locker can no longer contain the eggs. You purchase a warehouse, and set up a long chute.",
-		"The City Health Inspector came today. He had an accident in the warehouse. They never found him among the eggs.",
+		"Profits soar. Eggs hoards grow. ",
+		"The City Health Inspector came today. He intends to inspect our egg factory. ",
+		"He had an accident in the warehouse. They never found him among the eggs.",
 		"You mutter to yourself over and over \"You have to crack a few eggs... To make an omelette... You have to crack a few eggs.\"",
+		"The key to everything is patience. You get the chicken by hatching the egg, not by smashing it. - Arnold C Glasow",
+		"The crown is placed upon your brow. You are now the Egg King. Your loyal subjects applaud you.",
+		"You stare up at the moon, and know that some day soon, it will be in your grasp.",
 		"Butters smiles up at you. You smile back at her. She brings you an egg. This is the end.",
 		"Bruh stop. The game is over."
+
+
 	];
 
 
@@ -271,12 +534,21 @@
 
 		document.getElementById("settings_frame").style.display = "initial";
 		document.getElementById("main_frame").style.display = "none";
+		updateAllDisplays();
 
 
 	}
 
-	function btn_settings_back() {
+	function goto_upgrades() {
 
+		document.getElementById("upgrades_frame").style.display = "initial";
+		document.getElementById("main_frame").style.display = "none";
+		updateAllDisplays();
+
+	}
+
+	function goto_mainframe() {
+		document.getElementById("upgrades_frame").style.display = "none";
 		document.getElementById("settings_frame").style.display = "none";
 		document.getElementById("main_frame").style.display = "initial";
 
@@ -284,18 +556,38 @@
 	}
 
 
+	function eventRound(number, increment) {
+		var output = Math.ceil(number / increment) * increment;
+		//console.log("Rounded " + number + " to " + output)
+		return output
+	}
+
+	//fuckin javascript man.
+
+	function dec2add(number1, number2) {
+
+		return (number1.toFixed(2) * 100 + number2.toFixed(2) * 100) / 100
+
+	}
+
+	function dec2sub(number1, number2) {
+
+		return (number1.toFixed(2) * 100 - number2.toFixed(2) * 100) / 100
+
+	}
+
 	//generateEvents//
 	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
 	function generateEvents() {
 
 		for (i = 1; i < eventdesc.length; i++) {
-			eventnum = Math.floor(events[i - 1] * eventsmuliplier);
+			eventnum = eventRound(events[i - 1] * eventsmuliplier, 20);
 			events.push(eventnum)
 
 
 		}
 
-		events.push(1000000);
+		events.push(100000000);
 		console.log(events);
 		console.log(eventdesc);
 	}
@@ -310,17 +602,34 @@
 			if (eggTotal > events[i] && eggTotal < events[i + 1]) { updateFeedDisplay(eventdesc[i]) }
 
 		}
-		if(eggTotal >= 400){
 
-			startEggSales();
-	
-		}
 	}
 
-	function startEggSales(){
-			eggSalesUnlocked = true;
-			document.getElementById("btnSellEggs").onclick = function(){btnSellEggs()};
-			document.getElementById("btnSellEggs").innerHTML= "Sell Eggs";
+	function startEggSales() {
+		updateFeedDisplay("You sell the eggs to a neighbor for a fraction of a pittance.")
+		eggSalesUnlocked = true;
+		sellEggs();
+		document.getElementById("btnSellEggs").onclick = function () { btnSellEggs() };
+		document.getElementById("btnSellEggs").innerHTML = "Sell Eggs";
+		preStartUpgrades();
+
+	}
+
+	function preStartUpgrades() {
+
+		document.getElementById("btnUpgrades").innerHTML = "Locked: $1000";
+
+	}
+
+
+
+	function startUpgrades() {
+		upgradesUnlocked = true;
+		document.getElementById("btnUpgrades").onclick = function () { btnUpgrades() };
+		document.getElementById("btnUpgrades").innerHTML = "Upgrades";
+		updateFeedDisplay("Funds have been set aside for research and development. A great day for egg-kind. ")
+
+
 
 	}
 
@@ -339,25 +648,117 @@
 		buycollector();
 
 	}
+	//btnSellEggs()
+	//runs the onclick method for the sell button. 
+	function btnSellEggs() {
 
-	function btnSellEggs()
-	{
+		if (eggSalesUnlocked == false) {
+			if (eggTotal >= 12) {
+				startEggSales();
+			}
 
-		sellEggs();
+		}
+
+		else {
+			sellEggs();
+		}
+
+
+
+	}
+
+	function checkUpgradeFlag() {
+		if (upgradesUnlocked == false) {
+			if (moneyTotal >= 1000) {
+				moneyTotal -= 1000;
+				startUpgrades();
+			}
+		}
+
+
+	}
+
+	function btnUpgrades() {
+
+
+		goto_upgrades();
+
+
+
+	}
+
+	function upgradesFeedUpdate(input, value, effect) {
+		if (value !== undefined) {
+			document.getElementById("upgrades_rollover_display").innerHTML = " " + input + " | Cost: $" + value + "| Effect: " + effect;
+		}
+		else {
+			document.getElementById("upgrades_rollover_display").innerHTML = "Select an upgrade!"
+		}
+	}
+
+
+	function purchaseUpgrade(elementid, upgradeType, upgradeid, cost, value) {
+
+		switch (upgradeType) {
+			case "EC":
+				upgradeCollector(elementid, upgradeid, cost, value);
+				break;
+			case "EU":
+				upgradeEconomy(elementid, upgradeid, cost, value)
+				break;
+		}
+
 
 	}
 
 
-	function NukeProgress() {
-
-		//𓀥    𓁆 𓀕
-		//
-		//𓁆 𓀟   𓀣 𓁀
-
-		localStorage.clear();
-		location.reload();
+	function disableUpgrade(elementid) {
+		console.info("disabling upgrade: " + elementid);
+		document.getElementById(elementid).className = "upgradebtn_purchased";
+		document.getElementById(elementid).onclick = "";
 
 	}
+
+
+
+
+	function upgradeCollector(elementid, upgradeid, cost, value) {
+		if (moneyTotal >= cost) {
+			moneyTotal -= cost;
+			collectorSpeedMultiplier += value;
+			upgradeFlagEC[upgradeid - 1] = true;
+			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + " CollectorSpeedMultiplier: "
+				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid]);
+			disableUpgrade(elementid);
+			updateUpgradeDetailStats();
+
+		}
+
+
+	}
+
+	function upgradeEconomy(elementid, upgradeid, cost, value) {
+		if (moneyTotal >= cost) {
+			moneyTotal -= cost;
+
+			marketmax = dec2add(marketmax, value);
+			marketmin = dec2add(marketmin, value);
+			eggSellPrice = dec2add(eggSellPrice, value);
+
+
+			upgradeFlagEU[upgradeid - 1] = true;
+			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + "  Economy Change: "
+				+ collectorSpeedMultiplier + " upgradeFlagEU State: " + upgradeFlagEU[upgradeid]);
+			disableUpgrade(elementid);
+			updateUpgradeDetailStats();
+			updateEggPriceDisplay();
+
+		}
+
+
+	}
+
+
 
 
 
@@ -365,33 +766,113 @@
 	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
 	function buycollector() {
 
-		if (eggTotal >= collectorPrice) {
-			eggTotal -= collectorPrice;
+		if (moneyTotal >= collectorPrice) {
+			moneyTotal -= collectorPrice;
 			collectorTotal += 1;
-			if (collectorTotal == 1) { updateFeedDisplay("You've purchased your first collector. Now, she has somewhere to put them."); }
-			collectorPrice = Math.floor(collectorCostMultiplier * collectorPrice);
+			console.log("Current collector price: " + collectorPrice);
+			collectorEvent();
+
+			collectorPrice = Math.floor(collectorPrice * collectorCostMultiplier + 5);
+			console.log("Collector price increased to: " + collectorPrice);
 			updateCollectorDisplay();
 			updateCollectorPriceDisplay();
 			updateEggDisplay();
+			updateMoneyDisplay();
 		}
 	}
 
-	function sellEggs(){
+	//collectorEvent()
+	//what's a switch case 🤔
+	function collectorEvent() {
 
-		if(eggTotal > 0 ){
+		if (collectorTotal == 1) { updateFeedDisplay("You've traded away eggs for your first collector. Now, she has somewhere to put them."); }
+		if (collectorTotal == 25) { updateFeedDisplay("You're now trading eggs in bulk, and recieiving more collectors than ever."); }
+		if (collectorTotal == 50) { updateFeedDisplay("You're still not entirely sure what a collector is, but you have 50 of them now. Congration, you done it. "); }
+		if (collectorTotal == 69) { updateFeedDisplay("Nice."); }
+		if (collectorTotal == 75) { updateFeedDisplay("You have now passed what egg scientists are calling \"The Moonie Threshold\""); }
+		if (collectorTotal == 100) { updateFeedDisplay("Triple digit collectors! Achievement Get! (Note: This game does not have achievements. You get nothing.)"); }
+
+
+	}
+
+
+
+	//sellEggs()
+
+	function sellEggs() {
+
+		if (eggTotal > 0) {
 			eggvalue = eggTotal * eggSellPrice;
 			moneyTotal += eggvalue;
 			updateFeedDisplay("You have sold " + eggTotal + " eggs, at a total value of $" + eggvalue.toFixed(2) + ".");
-
-
+			if (Math.random() <= 0.66) {
+				if (eggvalue >= marketmin) {
+					lowerEggPrice();
+				}
+			}
 			eggTotal = 0;
 		}
 		updateMoneyDisplay();
 		updateEggPriceDisplay();
 		updateEggDisplay();
-		
+
 	}
 
+	//lowerEggPrice()
+	//Lower egg price by 0.00,0.01,0.02. Print to console, output to log. 
+	function lowerEggPrice() {
+
+
+		var pricechange = (Math.random(3) * 0.01)
+		if ((eggSellPrice -= pricechange) >= marketmin) {
+			eggSellPrice -= pricechange
+			console.log("Price drop: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
+			updateEggPriceDisplay();
+		}
+	}
+
+	//increaseEggPrice()
+	//Increase egg price by 0.00,0.01,0.02. Print to console, output to log. 
+	function increaseEggPrice() {
+
+
+
+		var pricechange = (Math.random(3) * 0.01);
+		if ((eggSellPrice -= pricechange) <= marketmax) {
+			eggSellPrice += pricechange;
+			console.log("Price increase: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
+			updateEggPriceDisplay();
+		}
+
+	}
+
+	//increaseEggPrice()
+	//Increase egg price by specified value. Print to console, output to log.
+	//overloading above method.  
+	// function increaseEggPrice(number) {
+	// 	var pricechange = number;
+	// 	eggSellPrice += pricechange;
+	// 	console.log("Price increase: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
+	// 	updateEggPriceDisplay();
+
+
+	// }
+
+	//checkEggPrice()
+	//If the egg sell price is below 1.00, roll randomly. On a 1% roll, increase the egg price. 
+	function checkEggPrice() {
+
+		if (eggSellPrice <= marketmax) {
+			if (Math.random() <= 0.01) {
+				increaseEggPrice();
+			}
+		}
+
+
+	}
+
+	//updateFeedDisplay
+	//Push events up the log. It's bad, but it works, and tha's all we care about. 
 	function updateFeedDisplay(eventtext) {
 		var currenttext = document.getElementById("display1").innerHTML;
 		if (currenttext != eventtext) {
@@ -408,23 +889,33 @@
 	}
 
 	function updateCollectorPriceDisplay() {
-		document.getElementById("collector_price_display").innerHTML = "Collector Price: " + collectorPrice;
+		document.getElementById("collector_price_display").innerHTML = "Collector Price: $" + collectorPrice;
 	}
 
 	function updateMoneyDisplay() {
-		document.getElementById("money_display").innerHTML = "Money: " + moneyTotal.toFixed(2);
-		document.getElementById("money_display").style.display = "initial";
+		document.getElementById("money_display").innerHTML = "Money: $" + moneyTotal.toFixed(2);
+
 	}
 
 	function updateEggPriceDisplay() {
-		document.getElementById("egg_sale_price_display").innerHTML = "Egg price: " + eggSellPrice;
-		document.getElementById("egg_sale_price_display").style.display = "initial";
+		document.getElementById("egg_sale_price_display").innerHTML = "Egg price: $" + eggSellPrice.toFixed(2);
+
 	}
 
 
 	function updateCollectorDisplay() {
 		document.getElementById("collector_display").innerHTML = "Collectors: " + collectorTotal;
 	}
+
+	function updateUpgradeDetailStats() {
+
+		document.getElementById("collector_speed").innerHTML = "Collector Speed: " + collectorSpeedMultiplier;
+		document.getElementById("market_max").innerHTML = "Market Maximum: " + marketmax;
+		document.getElementById("market_min").innerHTML = "Market Minimum: " + marketmin;
+	}
+
+
+
 	//eggtick//
 	//Butters gives you an egg.//
 	//adds eggs to total, checks for events, updates display.
@@ -439,10 +930,51 @@
 		updateCollectorDisplay();
 		updateCollectorPriceDisplay();
 		updateEggDisplay();
+		updateEggPriceDisplay();
+		updateMoneyDisplay();
+		updateUpgradeButtons();
+		updateUpgradeDetailStats();
 
-		if(eggSalesUnlocked == true){
-		updateEggPriceDisplay;
-		updateMoneyDisplay;
+
+
+	}
+
+	function updateButtons() {
+		if (eggSalesUnlocked == true) {
+			document.getElementById("btnSellEggs").onclick = function () { btnSellEggs() };
+			document.getElementById("btnSellEggs").innerHTML = "Sell Eggs";
+			preStartUpgrades();
+		}
+		if (upgradesUnlocked == true) {
+			document.getElementById("btnUpgrades").onclick = function () { btnUpgrades() };
+			document.getElementById("btnUpgrades").innerHTML = "Upgrades";
+
+		}
+
+
+	}
+
+	function updateUpgradeButtons() {
+
+		for (i = 0; i < upgradeFlagEC.length; i++) {
+			console.info("upgradeFlagEC[i] : " + i + " -> " + upgradeFlagEC[i])
+			if (upgradeFlagEC[i] == true) {
+				var elementname = "btnUpgradeEC" + (i + 1);
+				console.debug("elementname: " + elementname);
+				disableUpgrade(elementname);
+
+			}
+
+		}
+		for (i = 0; i < upgradeFlagEU.length; i++) {
+			console.info("upgradeFlagEU[i] : " + i + " -> " + upgradeFlagEU[i])
+			if (upgradeFlagEU[i] == true) {
+				var elementname = "btnUpgradeEU" + (i + 1);
+				console.debug("elementname: " + elementname);
+				disableUpgrade(elementname);
+
+			}
+
 		}
 
 	}
@@ -455,12 +987,19 @@
 			eggTotal: eggTotal,
 			collectorTotal: collectorTotal,
 			collectorPrice: collectorPrice,
-			eggSellPrice : eggSellPrice,
-			moneyTotal : moneyTotal,
+			eggSellPrice: eggSellPrice,
+			moneyTotal: moneyTotal,
 			eggSalesUnlocked: eggSalesUnlocked,
+			upgradesUnlocked: upgradesUnlocked,
+			collectorSpeedMultiplier: collectorSpeedMultiplier,
 			display1: document.getElementById("display1").innerHTML,
 			display2: document.getElementById("display2").innerHTML,
-			display3: document.getElementById("display3").innerHTML
+			display3: document.getElementById("display3").innerHTML,
+			upgradeFlagEC: upgradeFlagEC,
+			upgradeFlagEU: upgradeFlagEU,
+			upgradeFlagAM: upgradeFlagAM,
+			marketmax: marketmax,
+			marketmin: marketmin
 
 		}
 
@@ -478,14 +1017,33 @@
 			if (typeof savegame.eggSellPrice !== "undefined") { eggSellPrice = savegame.eggSellPrice }
 			if (typeof savegame.moneyTotal !== "undefined") { moneyTotal = savegame.moneyTotal }
 			if (typeof savegame.eggSalesUnlocked !== "undefined") { eggSalesUnlocked = savegame.eggSalesUnlocked }
+			if (typeof savegame.upgradesUnlocked !== "undefined") { upgradesUnlocked = savegame.upgradesUnlocked }
+			if (typeof savegame.collectorSpeedMultiplier !== "undefined") { collectorSpeedMultiplier = savegame.collectorSpeedMultiplier }
 			if (typeof savegame.display1 !== "undefined") { document.getElementById("display1").innerHTML = savegame.display1 }
 			if (typeof savegame.display2 !== "undefined") { document.getElementById("display2").innerHTML = savegame.display2 }
 			if (typeof savegame.display3 !== "undefined") { document.getElementById("display3").innerHTML = savegame.display3 }
+			if (typeof savegame.upgradeFlagEC !== "undefined") { upgradeFlagEC = savegame.upgradeFlagEC }
+			if (typeof savegame.upgradeFlagEU !== "undefined") { upgradeFlagEU = savegame.upgradeFlagEU }
+			if (typeof savegame.upgradeFlagAM !== "undefined") { upgradeFlagAM = savegame.upgradeFlagAM }
+			if (typeof savegame.marketmax !== "undefined") { marketmax = savegame.marketmax }
+			if (typeof savegame.marketmin !== "undefined") { marketmin = savegame.marketmin }
 
 		}
 
 		updateAllDisplays();
+		updateButtons();
 		logLoad();
+
+	}
+
+	function NukeProgress() {
+
+		//𓀥    𓁆 𓀕
+		//
+		//𓁆 𓀟   𓀣 𓁀
+
+		localStorage.clear();
+		location.reload();
 
 	}
 
@@ -496,9 +1054,17 @@
 		console.log("Loaded eggSellPrice: " + eggSellPrice);
 		console.log("Loaded moneyTotal: " + moneyTotal);
 		console.log("Loaded eggSalesUnlocked: " + eggSalesUnlocked);
+		console.log("Loaded upgradesUnlocked: " + upgradesUnlocked);
+		console.log("Loaded collectorSpeedMultiplier: " + collectorSpeedMultiplier);
 		console.log("Loaded display1: " + display1);
 		console.log("Loaded display2: " + display2);
 		console.log("Loaded display3: " + display3);
+		console.log("upgradeFlagEC: " + upgradeFlagEC.toString());
+		console.log("upgradeFlagEU: " + upgradeFlagEC.toString());
+		console.log("upgradeFlagAM: " + upgradeFlagEC.toString());
+		console.log("Loaded marketmax: " + marketmax);
+		console.log("Loaded marketmin: " + marketmin);
+
 
 	}
 
@@ -512,8 +1078,9 @@
 
 	//I don't know why this works, but it do.
 	window.setInterval(function () {
-		eggtick(Math.floor(collectorTotal * collectorSpeedMultiplier));
+		eggtick(collectorTotal * collectorSpeedMultiplier);
 		saveState();
+		checkEggPrice();
 
 
 	}, 1000);
