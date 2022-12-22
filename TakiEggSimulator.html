@@ -50,6 +50,7 @@
 			opacity: 0.90;
 			margin-bottom: 10px;
 			width: 100%;
+			height: auto;
 
 		}
 
@@ -61,10 +62,10 @@
 		}
 
 		#div_data {
-			height: 50px;
+			height: auto;
 			width: 100%;
 			background-color: #242424;
-			display: inline-block;
+			display: inline-flex;
 
 		}
 
@@ -250,6 +251,23 @@
 			transform: translateY(4px);
 
 		}
+
+
+		#detail_stats_display{
+
+			color: red;
+			text-align: center;
+			margin: auto;
+
+		}
+
+		#detail_stats_display > p{
+
+			display: inline;
+			padding: 15px;
+		}
+
+		
 	</style>
 
 
@@ -262,7 +280,7 @@
 	<div id="third_panel_mid" class="panel">
 		<div id="div_title">
 			<h1> Taki E G G Simulator </h1>
-			<h5> The Eggventure Capitalist™️ update! v0.0.6a (Now with 20% less bugs!)</h5>
+			<h5> The Eggventure Capitalist™️ update! v0.0.6c (Now with 20% bugs by weight!)</h5>
 		</div>
 		<div id="div_data">
 			<div id="datar1">
@@ -353,16 +371,25 @@
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEC5" class="upgradebtn"
 									onclick="purchaseUpgrade('btnUpgradeEC5','EC',5,50000,2)"
-									onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000,'Collector Speed +2.0')""
+									onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000,'Collector Speed +2.0')"
 									onmouseleave=" upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEC6" class="upgradebtn"
 									onclick="purchaseUpgrade('btnUpgradeEC6','EC',6,250000,3)"
 									onmouseenter="upgradesFeedUpdate('Non-Euclidean Ovoid Theory',250000,'Collector Speed +3.0')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><button id="btnUpgradeEC7" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC7','EC',7,750000,5)"
+									onmouseenter="upgradesFeedUpdate('Artificial Egg-telligence',750000,'Collector Speed +5.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC8" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC8','EC',8,1500000,20)"
+									onmouseenter="upgradesFeedUpdate('Dark Matter Topology ',1500000,'Collector Speed +20.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC9" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC9','EC',9,6000000,40)"
+									onmouseenter="upgradesFeedUpdate('Two Recycled Egg Cartons',6000000,'Collector Speed +40.0')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							
 						</tr>
 						<tr>
 							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Economy Upgrades</td>
@@ -400,10 +427,18 @@
 									onclick="purchaseUpgrade('btnUpgradeEU6','EU',6,350000,0.70)"
 									onmouseenter="upgradesFeedUpdate('Capital Injection',350000,'Market Minimum +0.70')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><button id="btnUpgradeEU7" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU7','EU',7,800000,1.25)"
+									onmouseenter="upgradesFeedUpdate('Egg Stocks',800000,'Market Minimum +1.25')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU8" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU8','EU',8,1750000,2.5)"
+									onmouseenter="upgradesFeedUpdate('Crypteggcurrency',1750000,'Market Minimum +2.5')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEU9" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEU9','EU',9,4000000,5.0)"
+									onmouseenter="upgradesFeedUpdate('The Barter System',4000000,'Market Minimum +5.00')"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 						</tr>
 						<tr>
 							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Automation Upgrades
@@ -576,6 +611,14 @@
 
 	}
 
+
+	function numformat(number){
+		
+    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+	}
+
+
 	//generateEvents//
 	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
 	function generateEvents() {
@@ -720,7 +763,16 @@
 
 	}
 
+	function quickstart(){
 
+		moneyTotal = 999999999;
+		upgradesUnlocked = true;
+		eggSalesUnlocked = true;
+		updateAllDisplays();
+		
+		return "someone's feeling cheaty today"
+
+	}
 
 
 	function upgradeCollector(elementid, upgradeid, cost, value) {
@@ -729,7 +781,7 @@
 			collectorSpeedMultiplier += value;
 			upgradeFlagEC[upgradeid - 1] = true;
 			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + " CollectorSpeedMultiplier: "
-				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid]);
+				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid - 1]);
 			disableUpgrade(elementid);
 			updateUpgradeDetailStats();
 			updateMoneyDisplay();
@@ -743,14 +795,14 @@
 		if (moneyTotal >= cost) {
 			moneyTotal -= cost;
 
-			marketmax = dec2add(marketmax, value);
+			marketmax = dec2add(marketmax, value+0.25);
 			marketmin = dec2add(marketmin, value);
 			eggSellPrice = dec2add(eggSellPrice, value);
 
 
 			upgradeFlagEU[upgradeid - 1] = true;
 			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + "  Economy Change: "
-				+ collectorSpeedMultiplier + " upgradeFlagEU State: " + upgradeFlagEU[upgradeid]);
+				+ collectorSpeedMultiplier + " upgradeFlagEU State: " + upgradeFlagEU[upgradeid - 1]);
 			disableUpgrade(elementid);
 			updateUpgradeDetailStats();
 			updateEggPriceDisplay();
@@ -805,7 +857,7 @@
 	function sellEggs() {
 
 		if (eggTotal > 0) {
-		var	eggvalue = eggTotal * eggSellPrice;
+			var eggvalue = eggTotal * eggSellPrice;
 			moneyTotal += eggvalue;
 			updateFeedDisplay("You have sold " + eggTotal + " eggs, at a total value of $" + eggvalue.toFixed(2) + ".");
 			if (Math.random() <= 0.66) {
@@ -826,10 +878,11 @@
 	function lowerEggPrice() {
 
 
-		var pricechange = (Math.random(3) * 0.01)
+		var pricechange = (Math.floor(Math.random() * 3) * 0.01)
 		console.log("PRICECHANGE-DECREASE: " + pricechange);
 		if ((eggSellPrice -= pricechange) > marketmin) {
 			eggSellPrice -= pricechange;
+			if (eggSellPrice < marketmin) { eggSellPrice = marketmin }
 			console.log("Price drop: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
 			updateEggPriceDisplay();
 		}
@@ -841,10 +894,11 @@
 
 
 
-		var pricechange = (Math.random(3) * 0.01);
+		var pricechange = (Math.floor(1 + Math.random() * 3) * 0.01);
 		console.log("PRICECHANGE-INCREASE: " + pricechange);
-		if ((eggSellPrice -= pricechange) <= marketmax) {
+		if ((eggSellPrice += pricechange) <= marketmax) {
 			eggSellPrice += pricechange;
+			if (eggSellPrice > marketmax) { eggSellPrice = marketmax }
 			console.log("Price increase: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
 			updateEggPriceDisplay();
 		}
@@ -890,33 +944,33 @@
 
 
 	function updateEggDisplay() {
-		document.getElementById("egg_display").innerHTML = "Eggs: " + eggTotal;
+		document.getElementById("egg_display").innerHTML = "Eggs: " + numformat(eggTotal);
 	}
 
 	function updateCollectorPriceDisplay() {
-		document.getElementById("collector_price_display").innerHTML = "Collector Price: $" + collectorPrice;
+		document.getElementById("collector_price_display").innerHTML = "Collector Price: $" + numformat(collectorPrice);
 	}
 
 	function updateMoneyDisplay() {
-		document.getElementById("money_display").innerHTML = "Money: $" + moneyTotal.toFixed(2);
+		document.getElementById("money_display").innerHTML = "Money: $" + numformat(moneyTotal.toFixed(2));
 
 	}
 
 	function updateEggPriceDisplay() {
-		document.getElementById("egg_sale_price_display").innerHTML = "Egg Price: $" + eggSellPrice.toFixed(2);
+		document.getElementById("egg_sale_price_display").innerHTML = "Egg Price: $" + numformat(eggSellPrice.toFixed(2));
 
 	}
 
 
 	function updateCollectorDisplay() {
-		document.getElementById("collector_display").innerHTML = "Collectors: " + collectorTotal;
+		document.getElementById("collector_display").innerHTML = "Collectors: " + numformat(collectorTotal);
 	}
 
 	function updateUpgradeDetailStats() {
 
-		document.getElementById("collector_speed").innerHTML = "Collector Speed: " + collectorSpeedMultiplier;
-		document.getElementById("market_max").innerHTML = "Market Maximum: " + marketmax;
-		document.getElementById("market_min").innerHTML = "Market Minimum: " + marketmin;
+		document.getElementById("collector_speed").innerHTML = "Collector Speed: " + numformat(collectorSpeedMultiplier);
+		document.getElementById("market_max").innerHTML = "Market Maximum: $" + numformat(marketmax.toFixed(2));
+		document.getElementById("market_min").innerHTML = "Market Minimum: $" + numformat(marketmin.toFixed(2));
 	}
 
 
