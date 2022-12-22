@@ -500,10 +500,10 @@
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//Variables
-
 	var eggTotal = 0;
 	var tickrate = 1;
 	var eggpertick = 0;
+
 	//collector vars
 	var collectorTotal = 0;
 	var collectorCostMultiplier = 1.15;
@@ -516,11 +516,11 @@
 	var marketmin = 0.10;
 	var marketmax = 1.00;
 
-
 	//Feature Flags
 	var eggSalesUnlocked = false;
 	var upgradesUnlocked = false;
-	//
+
+	//Upgrade Flags
 	var upgradeFlagEC = new Array(10).fill(false);
 	var upgradeFlagEU = new Array(10).fill(false);
 	var upgradeFlagAM = new Array(10).fill(false);
@@ -691,27 +691,21 @@
 	//btnSellEggs()
 	//runs the onclick method for the sell button. 
 	function btnSellEggs() {
-
 		if (eggSalesUnlocked == false) {
 			if (eggTotal >= 12) {
 				startEggSales();
 			}
-
 		}
-
 		else {
 			sellEggs();
 		}
 
-
-
 	}
-
 
 	function btnUpgrades() {
 
 		goto_upgrades();
-		
+
 	}
 
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
