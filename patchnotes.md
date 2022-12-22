@@ -7,7 +7,7 @@
 -Number formatting!
 -Bugfixes
 -Removed Herobrine.
--
+
 
 ###v0.0.6a
 -Fixed econ upgrade bug, IDs properly referenced

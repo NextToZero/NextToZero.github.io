@@ -10,7 +10,7 @@
 
 		}
 
-		div {}
+
 
 		h1 {
 			color: red;
@@ -35,7 +35,7 @@
 
 		}
 
-		#main_frame {}
+
 
 		#main_frame>div {
 			background-color: #242424;
@@ -253,7 +253,7 @@
 		}
 
 
-		#detail_stats_display{
+		#detail_stats_display {
 
 			color: red;
 			text-align: center;
@@ -261,13 +261,11 @@
 
 		}
 
-		#detail_stats_display > p{
+		#detail_stats_display>p {
 
 			display: inline;
 			padding: 15px;
 		}
-
-		
 	</style>
 
 
@@ -389,7 +387,7 @@
 									onclick="purchaseUpgrade('btnUpgradeEC9','EC',9,6000000,40)"
 									onmouseenter="upgradesFeedUpdate('Two Recycled Egg Cartons',6000000,'Collector Speed +40.0')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							
+
 						</tr>
 						<tr>
 							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Economy Upgrades</td>
@@ -490,7 +488,16 @@
 
 <script>
 
-
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+			db    db  .d8b.  d8888b. d888888b  .d8b.  d8888b. db      d88888b .d8888. 
+			88    88 d8' `8b 88  `8D   `88'   d8' `8b 88  `8D 88      88'     88'  YP 
+			Y8    8P 88ooo88 88oobY'    88    88ooo88 88oooY' 88      88ooooo `8bo.   
+			`8b  d8' 88~~~88 88`8b      88    88~~~88 88~~~b. 88      88~~~~~   `Y8b. 
+			 `8bd8'  88   88 88 `88.   .88.   88   88 88   8D 88booo. 88.     db   8D 
+			   YP    YP   YP 88   YD Y888888P YP   YP Y8888P' Y88888P Y88888P `8888Y' 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//Variables
 
@@ -513,16 +520,16 @@
 	//Feature Flags
 	var eggSalesUnlocked = false;
 	var upgradesUnlocked = false;
-
+	//
 	var upgradeFlagEC = new Array(10).fill(false);
 	var upgradeFlagEU = new Array(10).fill(false);
 	var upgradeFlagAM = new Array(10).fill(false);
 
 
-
 	//upgrade vars
 	var upgradeid = null;
 
+	//events vars
 	var events = [10];
 	var eventsmuliplier = 1.58;
 
@@ -564,7 +571,19 @@
 	];
 
 
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		  d8b   db  .d8b.  db    db d888888b  d888b   .d8b.  d888888b d888888b  .d88b.  d8b   db 
+		  888o  88 d8' `8b 88    88   `88'   88' Y8b d8' `8b `~~88~~'   `88'   .8P  Y8. 888o  88 
+		  88V8o 88 88ooo88 Y8    8P    88    88      88ooo88    88       88    88    88 88V8o 88 
+		  88 V8o88 88~~~88 `8b  d8'    88    88  ooo 88~~~88    88       88    88    88 88 V8o88 
+		  88  V888 88   88  `8bd8'    .88.   88. ~8~ 88   88    88      .88.   `8b  d8' 88  V888 
+		  VP   V8P YP   YP    YP    Y888888P  Y888P  YP   YP    YP    Y888888P  `Y88P'  VP   V8P                                                                                        
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+	//goto_settings()
+	//hide main_frame, show settings_frame
 	function goto_settings() {
 
 		document.getElementById("settings_frame").style.display = "initial";
@@ -574,6 +593,8 @@
 
 	}
 
+	//goto_upgrades
+	//hide main_frame, show upgrades_frame
 	function goto_upgrades() {
 
 		document.getElementById("upgrades_frame").style.display = "initial";
@@ -589,6 +610,18 @@
 
 
 	}
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		db   db d88888b db      d8888b. d88888b d8888b. .d8888. 
+		88   88 88'     88      88  `8D 88'     88  `8D 88'  YP 
+		88ooo88 88ooooo 88      88oodD' 88ooooo 88oobY' `8bo.   
+		88~~~88 88~~~~~ 88      88~~~   88~~~~~ 88`8b     `Y8b. 
+		88   88 88.     88booo. 88      88.     88 `88. db   8D 
+		YP   YP Y88888P Y88888P 88      Y88888P 88   YD `8888Y' 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 
 
 	function eventRound(number, increment) {
@@ -612,70 +645,33 @@
 	}
 
 
-	function numformat(number){
-		
-    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	function numformat(number) {
+
+		return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
 	}
 
 
-	//generateEvents//
-	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
-	function generateEvents() {
+	function quickstart() {
 
-		for (i = 1; i < eventdesc.length; i++) {
-			eventnum = eventRound(events[i - 1] * eventsmuliplier, 20);
-			events.push(eventnum)
-
-
-		}
-
-		events.push(100000000);
-		console.log(events);
-		console.log(eventdesc);
-	}
-
-
-	//checkEggEvent//
-	//Check current total against events array. Runs through the entire events array every single run of the function.
-	//Calls the displayUpdate function when number is between i and i+1. 
-	function checkEggEvent() {
-		for (let i = 0; i < events.length; i++) {
-
-			if (eggTotal > events[i] && eggTotal < events[i + 1]) { updateFeedDisplay(eventdesc[i]) }
-
-		}
-
-	}
-
-	function startEggSales() {
-		updateFeedDisplay("You sell the eggs to a neighbor for a fraction of a pittance.")
-		eggSalesUnlocked = true;
-		sellEggs();
-		updateEggDisplay();
-		document.getElementById("btnSellEggs").onclick = function () { btnSellEggs() };
-		document.getElementById("btnSellEggs").innerHTML = "Sell Eggs";
-		preStartUpgrades();
-
-	}
-
-	function preStartUpgrades() {
-
-		document.getElementById("btnUpgrades").innerHTML = "Locked: $1000";
-
-	}
-
-
-
-	function startUpgrades() {
+		moneyTotal = 999999999;
 		upgradesUnlocked = true;
-		document.getElementById("btnUpgrades").onclick = function () { btnUpgrades() };
-		document.getElementById("btnUpgrades").innerHTML = "Upgrades";
-		updateFeedDisplay("Funds have been set aside for research and development. A great day for egg-kind. ")
+		eggSalesUnlocked = true;
+		updateAllDisplays();
 
-
+		return "someone's feeling cheaty today"
 
 	}
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		d8888b. db    db d888888b d888888b  .d88b.  d8b   db .d8888. 
+		88  `8D 88    88 `~~88~~' `~~88~~' .8P  Y8. 888o  88 88'  YP 
+		88oooY' 88    88    88       88    88    88 88V8o 88 `8bo.   
+		88~~~b. 88    88    88       88    88    88 88 V8o88   `Y8b. 
+		88   8D 88b  d88    88       88    `8b  d8' 88  V888 db   8D 
+		Y8888P' ~Y8888P'    YP       YP     `Y88P'  VP   V8P `8888Y'  
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//onClick Grab Egg. 
 	function btnGrabEgg() {
@@ -711,130 +707,54 @@
 
 	}
 
-	function checkUpgradeFlag() {
-		if (upgradesUnlocked == false) {
-			if (moneyTotal >= 1000) {
-				moneyTotal -= 1000;
-				startUpgrades();
-			}
-		}
-
-
-	}
 
 	function btnUpgrades() {
 
-
 		goto_upgrades();
-
-
-
-	}
-
-	function upgradesFeedUpdate(input, value, effect) {
-		if (value !== undefined) {
-			document.getElementById("upgrades_rollover_display").innerHTML = " " + input + " | Cost: $" + value + "| Effect: " + effect;
-		}
-		else {
-			document.getElementById("upgrades_rollover_display").innerHTML = "Select an upgrade!"
-		}
-	}
-
-
-	function purchaseUpgrade(elementid, upgradeType, upgradeid, cost, value) {
-
-		switch (upgradeType) {
-			case "EC":
-				upgradeCollector(elementid, upgradeid, cost, value);
-				break;
-			case "EU":
-				upgradeEconomy(elementid, upgradeid, cost, value)
-				break;
-		}
-
-
-	}
-
-
-	function disableUpgrade(elementid) {
-		console.info("disabling upgrade: " + elementid);
-		document.getElementById(elementid).className = "upgradebtn_purchased";
-		document.getElementById(elementid).onclick = "";
-
-	}
-
-	function quickstart(){
-
-		moneyTotal = 999999999;
-		upgradesUnlocked = true;
-		eggSalesUnlocked = true;
-		updateAllDisplays();
 		
-		return "someone's feeling cheaty today"
-
 	}
 
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		d88888b db    db d88888b d8b   db d888888b .d8888. 
+		88'     88    88 88'     888o  88 `~~88~~' 88'  YP 
+		88ooooo Y8    8P 88ooooo 88V8o 88    88    `8bo.   
+		88~~~~~ `8b  d8' 88~~~~~ 88 V8o88    88      `Y8b. 
+		88.      `8bd8'  88.     88  V888    88    db   8D 
+		Y88888P    YP    Y88888P VP   V8P    YP    `8888Y' 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	function upgradeCollector(elementid, upgradeid, cost, value) {
-		if (moneyTotal >= cost) {
-			moneyTotal -= cost;
-			collectorSpeedMultiplier += value;
-			upgradeFlagEC[upgradeid - 1] = true;
-			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + " CollectorSpeedMultiplier: "
-				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid - 1]);
-			disableUpgrade(elementid);
-			updateUpgradeDetailStats();
-			updateMoneyDisplay();
+	//generateEvents//
+	//dynamically creates events array based on a multiplier. Multiplier set above, currently 1.58x
+	function generateEvents() {
+
+		for (i = 1; i < eventdesc.length; i++) {
+			eventnum = eventRound(events[i - 1] * eventsmuliplier, 20);
+			events.push(eventnum)
+
 
 		}
 
-
+		events.push(100000000);
+		console.log(events);
+		console.log(eventdesc);
 	}
 
-	function upgradeEconomy(elementid, upgradeid, cost, value) {
-		if (moneyTotal >= cost) {
-			moneyTotal -= cost;
 
-			marketmax = dec2add(marketmax, value+0.25);
-			marketmin = dec2add(marketmin, value);
-			eggSellPrice = dec2add(eggSellPrice, value);
+	//checkEggEvent//
+	//Check current total against events array. Runs through the entire events array every single run of the function.
+	//Calls the displayUpdate function when number is between i and i+1. 
+	function checkEggEvent() {
+		for (let i = 0; i < events.length; i++) {
 
-
-			upgradeFlagEU[upgradeid - 1] = true;
-			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + "  Economy Change: "
-				+ collectorSpeedMultiplier + " upgradeFlagEU State: " + upgradeFlagEU[upgradeid - 1]);
-			disableUpgrade(elementid);
-			updateUpgradeDetailStats();
-			updateEggPriceDisplay();
-			updateMoneyDisplay();
+			if (eggTotal > events[i] && eggTotal < events[i + 1]) { updateFeedDisplay(eventdesc[i]) }
 
 		}
 
-
 	}
 
 
-
-
-
-	//buyCollector//
-	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
-	function buycollector() {
-
-		if (moneyTotal >= collectorPrice) {
-			moneyTotal -= collectorPrice;
-			collectorTotal += 1;
-			console.log("Current collector price: " + collectorPrice);
-			collectorEvent();
-
-			collectorPrice = Math.floor(collectorPrice * collectorCostMultiplier + 5);
-			console.log("Collector price increased to: " + collectorPrice);
-			updateCollectorDisplay();
-			updateCollectorPriceDisplay();
-			updateEggDisplay();
-			updateMoneyDisplay();
-		}
-	}
 
 	//collectorEvent()
 	//what's a switch case 🤔
@@ -850,6 +770,29 @@
 
 	}
 
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		d88888b  d888b   d888b    .d8888.  .d8b.  db      d88888b .d8888. 
+		88'     88' Y8b 88' Y8b   88'  YP d8' `8b 88      88'     88'  YP 
+		88ooooo 88      88        `8bo.   88ooo88 88      88ooooo `8bo.   
+		88~~~~~ 88  ooo 88  ooo     `Y8b. 88~~~88 88      88~~~~~   `Y8b. 
+		88.     88. ~8~ 88. ~8~   db   8D 88   88 88booo. 88.     db   8D 
+		Y88888P  Y888P   Y888P    `8888Y' YP   YP Y88888P Y88888P `8888Y'
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+	function startEggSales() {
+		updateFeedDisplay("You sell the eggs to a neighbor for a fraction of a pittance.")
+		eggSalesUnlocked = true;
+		sellEggs();
+		updateEggDisplay();
+		document.getElementById("btnSellEggs").onclick = function () { btnSellEggs() };
+		document.getElementById("btnSellEggs").innerHTML = "Sell Eggs";
+		preStartUpgrades();
+
+	}
 
 
 	//sellEggs()
@@ -930,6 +873,183 @@
 
 	}
 
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+	 .o88b.  .d88b.  db      db      d88888b  .o88b. d888888b  .d88b.  d8888b. .d8888. 
+	d8P  Y8 .8P  Y8. 88      88      88'     d8P  Y8 `~~88~~' .8P  Y8. 88  `8D 88'  YP 
+	8P      88    88 88      88      88ooooo 8P         88    88    88 88oobY' `8bo.   
+	8b      88    88 88      88      88~~~~~ 8b         88    88    88 88`8b     `Y8b. 
+	Y8b  d8 `8b  d8' 88booo. 88booo. 88.     Y8b  d8    88    `8b  d8' 88 `88. db   8D 
+	 `Y88P'  `Y88P'  Y88888P Y88888P Y88888P  `Y88P'    YP     `Y88P'  88   YD `8888Y' 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+	//buyCollector//
+	//when called, add one to total. For first collector a special display message posted. More to follow eventually.
+	function buycollector() {
+
+		if (moneyTotal >= collectorPrice) {
+			moneyTotal -= collectorPrice;
+			collectorTotal += 1;
+			console.log("Current collector price: " + collectorPrice);
+			collectorEvent();
+
+			collectorPrice = Math.floor(collectorPrice * collectorCostMultiplier + 5);
+			console.log("Collector price increased to: " + collectorPrice);
+			updateCollectorDisplay();
+			updateCollectorPriceDisplay();
+			updateEggDisplay();
+			updateMoneyDisplay();
+		}
+	}
+
+
+
+
+
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		db    db d8888b.  d888b  d8888b.  .d8b.  d8888b. d88888b .d8888. 
+		88    88 88  `8D 88' Y8b 88  `8D d8' `8b 88  `8D 88'     88'  YP 
+		88    88 88oodD' 88      88oobY' 88ooo88 88   88 88ooooo `8bo.   
+		88    88 88~~~   88  ooo 88`8b   88~~~88 88   88 88~~~~~   `Y8b. 
+		88b  d88 88      88. ~8~ 88 `88. 88   88 88  .8D 88.     db   8D 
+		~Y8888P' 88       Y888P  88   YD YP   YP Y8888D' Y88888P `8888Y' 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+	function preStartUpgrades() {
+
+		document.getElementById("btnUpgrades").innerHTML = "Locked: $1000";
+
+	}
+
+
+
+	function startUpgrades() {
+		upgradesUnlocked = true;
+		document.getElementById("btnUpgrades").onclick = function () { btnUpgrades() };
+		document.getElementById("btnUpgrades").innerHTML = "Upgrades";
+		updateFeedDisplay("Funds have been set aside for research and development. A great day for egg-kind. ")
+
+
+
+	}
+
+
+
+	function checkUpgradeFlag() {
+		if (upgradesUnlocked == false) {
+			if (moneyTotal >= 1000) {
+				moneyTotal -= 1000;
+				startUpgrades();
+			}
+		}
+
+
+	}
+
+
+	function upgradesFeedUpdate(input, value, effect) {
+		if (value !== undefined) {
+			document.getElementById("upgrades_rollover_display").innerHTML = " " + input + " | Cost: $" + value + "| Effect: " + effect;
+		}
+		else {
+			document.getElementById("upgrades_rollover_display").innerHTML = "Select an upgrade!"
+		}
+	}
+
+
+	function purchaseUpgrade(elementid, upgradeType, upgradeid, cost, value) {
+
+		switch (upgradeType) {
+			case "EC":
+				upgradeCollector(elementid, upgradeid, cost, value);
+				break;
+			case "EU":
+				upgradeEconomy(elementid, upgradeid, cost, value)
+				break;
+		}
+
+
+	}
+
+
+	function disableUpgrade(elementid) {
+		console.info("disabling upgrade: " + elementid);
+		document.getElementById(elementid).className = "upgradebtn_purchased";
+		document.getElementById(elementid).onclick = "";
+
+	}
+
+
+
+
+
+
+	function upgradeCollector(elementid, upgradeid, cost, value) {
+		if (moneyTotal >= cost) {
+			moneyTotal -= cost;
+			collectorSpeedMultiplier += value;
+			upgradeFlagEC[upgradeid - 1] = true;
+			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + " CollectorSpeedMultiplier: "
+				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid - 1]);
+			disableUpgrade(elementid);
+			updateUpgradeDetailStats();
+			updateMoneyDisplay();
+
+		}
+
+
+	}
+
+	function upgradeEconomy(elementid, upgradeid, cost, value) {
+		if (moneyTotal >= cost) {
+			moneyTotal -= cost;
+
+			marketmax = dec2add(marketmax, value + 0.25);
+			marketmin = dec2add(marketmin, value);
+			eggSellPrice = dec2add(eggSellPrice, value);
+
+
+			upgradeFlagEU[upgradeid - 1] = true;
+			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + "  Economy Change: "
+				+ collectorSpeedMultiplier + " upgradeFlagEU State: " + upgradeFlagEU[upgradeid - 1]);
+			disableUpgrade(elementid);
+			updateUpgradeDetailStats();
+			updateEggPriceDisplay();
+			updateMoneyDisplay();
+
+		}
+
+
+	}
+
+
+
+
+
+
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		d8888b. d888888b .d8888. d8888b. db       .d8b.  db    db 
+		88  `8D   `88'   88'  YP 88  `8D 88      d8' `8b `8b  d8' 
+		88   88    88    `8bo.   88oodD' 88      88ooo88  `8bd8'  
+		88   88    88      `Y8b. 88~~~   88      88~~~88    88    
+		88  .8D   .88.   db   8D 88      88booo. 88   88    88    
+		Y8888D' Y888888P `8888Y' 88      Y88888P YP   YP    YP    
+															   
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
 	//updateFeedDisplay
 	//Push events up the log. It's bad, but it works, and tha's all we care about. 
 	function updateFeedDisplay(eventtext) {
@@ -975,14 +1095,7 @@
 
 
 
-	//eggtick//
-	//Butters gives you an egg.//
-	//adds eggs to total, checks for events, updates display.
-	function eggtick(num) {
-		eggTotal += num;
-		checkEggEvent();
-		updateEggDisplay();
-	}
+
 
 	function updateAllDisplays() {
 		console.log("Display Update");
@@ -1037,6 +1150,18 @@
 		}
 
 	}
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		.d8888. d888888b  .d88b.  d8888b.  .d8b.   d888b  d88888b 
+		88'  YP `~~88~~' .8P  Y8. 88  `8D d8' `8b 88' Y8b 88'     
+		`8bo.      88    88    88 88oobY' 88ooo88 88      88ooooo 
+		  `Y8b.    88    88    88 88`8b   88~~~88 88  ooo 88~~~~~ 
+		db   8D    88    `8b  d8' 88 `88. 88   88 88. ~8~ 88.     
+		`8888Y'    YP     `Y88P'  88   YD YP   YP  Y888P  Y88888P 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 
 
 	//saveState()//
@@ -1125,6 +1250,28 @@
 		console.log("Loaded marketmin: " + marketmin);
 
 
+	}
+
+
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+		.88b  d88.  .d8b.  d888888b d8b   db 
+		88'YbdP`88 d8' `8b   `88'   888o  88 
+		88  88  88 88ooo88    88    88V8o 88 
+		88  88  88 88~~~88    88    88 V8o88 
+		88  88  88 88   88   .88.   88  V888 
+		YP  YP  YP YP   YP Y888888P VP   V8P 
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+	//eggtick//
+	//Butters gives you an egg.//
+	//adds eggs to total, checks for events, updates display.
+	function eggtick(num) {
+		eggTotal += num;
+		checkEggEvent();
+		updateEggDisplay();
 	}
 
 
