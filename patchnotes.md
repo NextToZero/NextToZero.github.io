@@ -6,6 +6,8 @@
 My god. I really need to update these more frequently in my hyperfixated coding sprints
 
 -Introducted Upgrades. Defined the first few... more to follow. 
+	-6x collector upgrades
+	-6x economy upgrades
 -some content added, more planed.
 -baNaNa. stupid.
 -Removed Herobrine.
