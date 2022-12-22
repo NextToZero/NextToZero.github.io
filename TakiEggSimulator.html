@@ -262,7 +262,7 @@
 	<div id="third_panel_mid" class="panel">
 		<div id="div_title">
 			<h1> Taki E G G Simulator </h1>
-			<h5> The Eggventure Capitalist™️ update! v0.0.6</h5>
+			<h5> The Eggventure Capitalist™️ update! v0.0.6a (Now with 20% less bugs!)</h5>
 		</div>
 		<div id="div_data">
 			<div id="datar1">
@@ -381,23 +381,23 @@
 									onmouseenter="upgradesFeedUpdate('Word of Mouth',1000,'Market Minimum +0.15')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEU2" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU2','EU',1,4000,0.20)"
+									onclick="purchaseUpgrade('btnUpgradeEU2','EU',2,4000,0.20)"
 									onmouseenter="upgradesFeedUpdate('Local Advertising',4000,'Market Minimum +0.20')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEU3" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU3','EU',1,10000,0.25)"
+									onclick="purchaseUpgrade('btnUpgradeEU3','EU',3,10000,0.25)"
 									onmouseenter="upgradesFeedUpdate('Morning Radio Show',10000,'Market Minimum +0.25')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEU4" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU4','EU',1,30000,0.35)"
+									onclick="purchaseUpgrade('btnUpgradeEU4','EU',4,30000,0.35)"
 									onmouseenter="upgradesFeedUpdate('Referral Program',30000,'Market Minimum +0.35')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEU5" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU5','EU',1,65000,0.50)"
+									onclick="purchaseUpgrade('btnUpgradeEU5','EU',5,65000,0.50)"
 									onmouseenter="upgradesFeedUpdate('Multi-Egg Marketing',65000,'Market Minimum +0.50')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEU6" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU6','EU',1,350000,0.70)"
+									onclick="purchaseUpgrade('btnUpgradeEU6','EU',6,350000,0.70)"
 									onmouseenter="upgradesFeedUpdate('Capital Injection',350000,'Market Minimum +0.70')"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td>&nbsp;</td>
@@ -501,7 +501,7 @@
 		"Butters brings in another egg. At this point, you've set up cameras to watch her at all times.",
 		"Your weekly omelette nights are a huge hit. You've started to enjoy the taste, but you're not happy about it.",
 		"You become extremely interested in shorting egg stocks.",
-		"The eggs are a hit! You start to sell Butters's Farm Fresh Eggs in local stores.",
+		"The eggs are a hit! You start to sell Butters' Farm Fresh Eggs in local stores.",
 		"Customer reviews are in, and they're happier than ever. The only complaint is the dog hair in every carton.",
 		"Prices seem to fluctuate often. You begin to start the process of crafting an egg cartel.",
 		"The market begins to oversaturate. Egg prices decline. You regret quitting your job... just a little bit.",
@@ -609,6 +609,7 @@
 		updateFeedDisplay("You sell the eggs to a neighbor for a fraction of a pittance.")
 		eggSalesUnlocked = true;
 		sellEggs();
+		updateEggDisplay();
 		document.getElementById("btnSellEggs").onclick = function () { btnSellEggs() };
 		document.getElementById("btnSellEggs").innerHTML = "Sell Eggs";
 		preStartUpgrades();
@@ -731,6 +732,7 @@
 				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid]);
 			disableUpgrade(elementid);
 			updateUpgradeDetailStats();
+			updateMoneyDisplay();
 
 		}
 
@@ -752,6 +754,7 @@
 			disableUpgrade(elementid);
 			updateUpgradeDetailStats();
 			updateEggPriceDisplay();
+			updateMoneyDisplay();
 
 		}
 
@@ -802,11 +805,11 @@
 	function sellEggs() {
 
 		if (eggTotal > 0) {
-			eggvalue = eggTotal * eggSellPrice;
+		var	eggvalue = eggTotal * eggSellPrice;
 			moneyTotal += eggvalue;
 			updateFeedDisplay("You have sold " + eggTotal + " eggs, at a total value of $" + eggvalue.toFixed(2) + ".");
 			if (Math.random() <= 0.66) {
-				if (eggvalue >= marketmin) {
+				if (eggSellPrice >= marketmin) {
 					lowerEggPrice();
 				}
 			}
@@ -824,8 +827,9 @@
 
 
 		var pricechange = (Math.random(3) * 0.01)
-		if ((eggSellPrice -= pricechange) >= marketmin) {
-			eggSellPrice -= pricechange
+		console.log("PRICECHANGE-DECREASE: " + pricechange);
+		if ((eggSellPrice -= pricechange) > marketmin) {
+			eggSellPrice -= pricechange;
 			console.log("Price drop: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
 			updateEggPriceDisplay();
 		}
@@ -838,6 +842,7 @@
 
 
 		var pricechange = (Math.random(3) * 0.01);
+		console.log("PRICECHANGE-INCREASE: " + pricechange);
 		if ((eggSellPrice -= pricechange) <= marketmax) {
 			eggSellPrice += pricechange;
 			console.log("Price increase: " + pricechange.toFixed(2) + ". Price now: " + eggSellPrice.toFixed(2));
@@ -898,7 +903,7 @@
 	}
 
 	function updateEggPriceDisplay() {
-		document.getElementById("egg_sale_price_display").innerHTML = "Egg price: $" + eggSellPrice.toFixed(2);
+		document.getElementById("egg_sale_price_display").innerHTML = "Egg Price: $" + eggSellPrice.toFixed(2);
 
 	}
 
@@ -1060,8 +1065,8 @@
 		console.log("Loaded display2: " + display2);
 		console.log("Loaded display3: " + display3);
 		console.log("upgradeFlagEC: " + upgradeFlagEC.toString());
-		console.log("upgradeFlagEU: " + upgradeFlagEC.toString());
-		console.log("upgradeFlagAM: " + upgradeFlagEC.toString());
+		console.log("upgradeFlagEU: " + upgradeFlagEU.toString());
+		console.log("upgradeFlagAM: " + upgradeFlagAM.toString());
 		console.log("Loaded marketmax: " + marketmax);
 		console.log("Loaded marketmin: " + marketmin);
 
