@@ -1,4 +1,14 @@
 ## Version Notes
+###v0.0.6a
+-Fixed econ upgrade bug, IDs properly referenced
+-Eggvalue now properly checks on decrementing
+-Butters's's fixed
+-Egg price decrement fixed. 
+
+
+
+
+
 ###v0.0.6
 -Collector Events
 -Restructure of base formulas to allow for longer games, better events, and *upgrades*
@@ -11,6 +21,7 @@ My god. I really need to update these more frequently in my hyperfixated coding 
 -some content added, more planed.
 -baNaNa. stupid.
 -Removed Herobrine.
+
 
 
 
