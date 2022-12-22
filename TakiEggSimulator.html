@@ -246,11 +246,10 @@
 			outline: none;
 			border: none;
 			border-radius: 15px;
-		
+
 			transform: translateY(4px);
 
 		}
-
 	</style>
 
 
@@ -316,6 +315,7 @@
 			</div>
 
 		</div>
+		
 		<div id="upgrades_frame">
 			<div id="upgrades_pane" onmouseenter="upgradesFeedUpdate('')">
 				<H1> Upgrades </H1>
@@ -334,13 +334,25 @@
 									onmouseenter="upgradesFeedUpdate('Recycled Egg Cartons',500)"
 									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEC2" class="upgradebtn"
-								onclick="purchaseUpgrade('btnUpgradeEC2','EC',2,2000,1)"
-								onmouseenter="upgradesFeedUpdate('Orphan-Proof Bins',1000)"
-								onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC3" class="upgradebtn">🥚</button></td>
-							<td><button id="btnUpgradeEC4" class="upgradebtn">🥚</button></td>
-							<td><button id="btnUpgradeEC5" class="upgradebtn">🥚</button></td>
-							<td><button id="btnUpgradeEC6" class="upgradebtn">🥚</button></td>
+									onclick="purchaseUpgrade('btnUpgradeEC2','EC',2,2000,1)"
+									onmouseenter="upgradesFeedUpdate('Orphan-Proof Bins',2000)"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC3" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC3','EC',3,6000,1.5)"
+									onmouseenter="upgradesFeedUpdate('Egg Sorting Trebuchets',6000)"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC4" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC4','EC',4,20000,2)"
+									onmouseenter="upgradesFeedUpdate('Artificial Egg-teligence',20000)"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC5" class="upgradebtn"
+									onclick="purchaseUpgrade('btnUpgradeEC5','EC',5,50000,2)"
+									onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000)"
+									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							<td><button id="btnUpgradeEC6" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC6','EC',6,250000,3)"
+										onmouseenter="upgradesFeedUpdate('Non-Euclidean Ovoid Theory',250000)"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 							<td><button id="btnUpgradeEC7" class="upgradebtn">🥚</button></td>
 							<td><button id="btnUpgradeEC8" class="upgradebtn">🥚</button></td>
 							<td><button id="btnUpgradeEC9" class="upgradebtn">🥚</button></td>
@@ -619,29 +631,29 @@
 
 	}
 
-	function upgradesFeedUpdate(input,value) {
-		if(value !== undefined){
-		document.getElementById("upgrades_rollover_display").innerHTML = input + "\n Cost: $" + value;
+	function upgradesFeedUpdate(input, value) {
+		if (value !== undefined) {
+			document.getElementById("upgrades_rollover_display").innerHTML = "*" + input + "* Cost: $" + value;
 		}
-		else{
+		else {
 			document.getElementById("upgrades_rollover_display").innerHTML = "Select an upgrade!"
 		}
 	}
 
 
-	function purchaseUpgrade(elementid,upgradeType,upgradeid,cost,value){
+	function purchaseUpgrade(elementid, upgradeType, upgradeid, cost, value) {
 
-		switch (upgradeType){
+		switch (upgradeType) {
 			case "EC":
-				upgradeCollector(elementid,upgradeid,cost,value);
-				break;	
-			}
-		
-
+				upgradeCollector(elementid, upgradeid, cost, value);
+				break;
 		}
 
 
-	function disableUpgrade(elementid){
+	}
+
+
+	function disableUpgrade(elementid) {
 		console.info("disabling upgrade: " + elementid);
 		document.getElementById(elementid).className = "upgradebtn_purchased";
 		document.getElementById(elementid).onclick = "";
@@ -649,18 +661,18 @@
 	}
 
 
-	
 
-	function upgradeCollector(elementid,upgradeid,cost,value){
-		if(moneyTotal >= cost){
+
+	function upgradeCollector(elementid, upgradeid, cost, value) {
+		if (moneyTotal >= cost) {
 			moneyTotal -= cost;
 			collectorSpeedMultiplier += value;
-			upgradeFlagEC[upgradeid - 1 ] = true;
-			console.log("Upgrade purchased: " + upgradeid  + " Cost deducted: " + cost + " CollectorSpeedMultiplier: " 
-			+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid]);
+			upgradeFlagEC[upgradeid - 1] = true;
+			console.log("Upgrade purchased: " + upgradeid + " Cost deducted: " + cost + " CollectorSpeedMultiplier: "
+				+ collectorSpeedMultiplier + " upgradeFlagEC State: " + upgradeFlagEC[upgradeid]);
 			disableUpgrade(elementid);
-			
-			
+
+
 		}
 
 
@@ -848,12 +860,12 @@
 
 	}
 
-	function updateUpgradeButtons(){
+	function updateUpgradeButtons() {
 
-		for(i=0;i < upgradeFlagEC.length; i++){
+		for (i = 0; i < upgradeFlagEC.length; i++) {
 			console.info("upgradeFlagEC[i] : " + i + " -> " + upgradeFlagEC[i])
-			if(upgradeFlagEC[i] == true){
-				var elementname = "btnUpgradeEC" + (i+1);
+			if (upgradeFlagEC[i] == true) {
+				var elementname = "btnUpgradeEC" + (i + 1);
 				console.debug("elementname: " + elementname);
 				disableUpgrade(elementname);
 
@@ -880,9 +892,9 @@
 			display1: document.getElementById("display1").innerHTML,
 			display2: document.getElementById("display2").innerHTML,
 			display3: document.getElementById("display3").innerHTML,
-			upgradeFlagEC : upgradeFlagEC,
-			upgradeFlagEU : upgradeFlagEU,
-			upgradeFlagAM : upgradeFlagAM
+			upgradeFlagEC: upgradeFlagEC,
+			upgradeFlagEU: upgradeFlagEU,
+			upgradeFlagAM: upgradeFlagAM
 
 
 		}
@@ -908,7 +920,7 @@
 			if (typeof savegame.display3 !== "undefined") { document.getElementById("display3").innerHTML = savegame.display3 }
 			if (typeof savegame.upgradeFlagEC !== "undefined") { upgradeFlagEC = savegame.upgradeFlagEC }
 			if (typeof savegame.upgradeFlagEU !== "undefined") { upgradeFlagEU = savegame.upgradeFlagEU }
-			if (typeof savegame.upgradeFlagAM !== "undefined") { upgradeFlagAM = savegame.upgradeFlagAM }	
+			if (typeof savegame.upgradeFlagAM !== "undefined") { upgradeFlagAM = savegame.upgradeFlagAM }
 		}
 
 		updateAllDisplays();
