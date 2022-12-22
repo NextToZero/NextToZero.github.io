@@ -1,10 +1,20 @@
 ## Version Notes
+###v0.0.6c
+-Added Herobrine
+-More ugprades!
+	-Scaling on econ upgrades changed. Max is now +0.25 per upgrade over min, to add more growth potential.
+	-centered detail stats
+-Number formatting!
+-Bugfixes
+-Removed Herobrine.
+-
+
 ###v0.0.6a
 -Fixed econ upgrade bug, IDs properly referenced
 -Eggvalue now properly checks on decrementing
 -Butters's's fixed
 -Egg price decrement fixed. 
-
+-Removed Herobrine.
 
 
 
