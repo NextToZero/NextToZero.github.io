@@ -266,6 +266,23 @@
 			display: inline;
 			padding: 15px;
 		}
+
+		/*------News Ticker ------*/
+
+		#news_ticker {
+			font-size: 1.55em;
+			color: red;
+			background-color: #282828;
+			border: 2px solid #880000;
+			border-radius: 2px;
+			overflow: hidden;
+
+			font-weight: bold;
+			white-space: nowrap;
+			clear: both;
+			float: left;
+
+		}
 	</style>
 
 
@@ -289,111 +306,119 @@
 				<p id="egg_sale_price_display">Egg Price: $0</p>
 			</div>
 		</div>
-		<div id="main_frame">
-
-			<div id="div_display">
-				<p id="display3"></p>
-				<p id="display2"></p>
-				<p id="display1">It's a calm day. Work is slow, the sun is shining, and wait- Butters has brought you
-					something. It's... an
-					egg?</p>
+		<div id="news_ticker_div">
+			<div id="news_ticker"> Sample Text!</marquee>
 			</div>
-			<div id="div_buttonSet1" class="btn-group">
-				<button id="btnGrabEgg" class="btn" style="width:33.3%" onclick="btnGrabEgg()"> Grab Egg </button>
-				<button id="btnBuyCollector" class="btn" style="width:33.3%" onclick="btnBuyCollector()"> Buy
-					Collector</button>
-				<button id="btnTBD" class="btn" style="width:33.3%"> Locked </button>
-			</div>
-			<br>
-			<div id="div_buttonSet1" class="btn-group">
-				<button id="btnSellEggs" class="btn" style="width:33.3%" onclick="btnSellEggs()"> Locked: 12 Eggs
-				</button>
-				<button id="btnUpgrades" class="btn" style="width:33.3%" onclick="checkUpgradeFlag()"> Locked </button>
-				<button id="btnSettings" class="btn" style="width:33.3%" onclick="goto_settings()"> Settings </button>
+			<div id="main_frame">
 
-			</div>
-
-		</div>
-		<div id="settings_frame">
-			<div id="settings_pane">
-				<H1> Settings </H1>
-				<p> This will contain some other settings eventually. If you press Nuke, it will reload the page and
-					wipe your progress. Think carefully. There is no confirm text.</p>
-				<br>
-				<div class="btn-group" style="padding-bottom: 20px;">
-					<button id="btnNuke" class="btn" style="width:33.3%" onclick="NukeProgress()"> Nuke</button>
+				<div id="div_display">
+					<p id="display3"></p>
+					<p id="display2"></p>
+					<p id="display1">It's a calm day. Work is slow, the sun is shining, and wait- Butters has brought
+						you
+						something. It's... an
+						egg?</p>
+				</div>
+				<div id="div_buttonSet1" class="btn-group">
+					<button id="btnGrabEgg" class="btn" style="width:33.3%" onclick="btnGrabEgg()"> Grab Egg </button>
+					<button id="btnBuyCollector" class="btn" style="width:33.3%" onclick="btnBuyCollector()"> Buy
+						Collector</button>
+					<button id="btnTBD" class="btn" style="width:33.3%"> Locked </button>
 				</div>
 				<br>
-				<div class="btn-group">
-					<button id="btn_settings_back" class="btn" style="width:33.3%"
-						onclick="goto_mainframe()">Back</button>
+				<div id="div_buttonSet1" class="btn-group">
+					<button id="btnSellEggs" class="btn" style="width:33.3%" onclick="btnSellEggs()"> Locked: 12 Eggs
+					</button>
+					<button id="btnUpgrades" class="btn" style="width:33.3%" onclick="checkUpgradeFlag()"> Locked
+					</button>
+					<button id="btnSettings" class="btn" style="width:33.3%" onclick="goto_settings()"> Settings
+					</button>
+
 				</div>
+
+			</div>
+			<div id="settings_frame">
+				<div id="settings_pane">
+					<H1> Settings </H1>
+					<p> This will contain some other settings eventually. If you press Nuke, it will reload the page and
+						wipe your progress. Think carefully. There is no confirm text.</p>
+					<br>
+					<div class="btn-group" style="padding-bottom: 20px;">
+						<button id="btnNuke" class="btn" style="width:33.3%" onclick="NukeProgress()"> Nuke</button>
+					</div>
+					<br>
+					<div class="btn-group">
+						<button id="btn_settings_back" class="btn" style="width:33.3%"
+							onclick="goto_mainframe()">Back</button>
+					</div>
+				</div>
+
 			</div>
 
-		</div>
+			<div id="upgrades_frame">
+				<div id="upgrades_pane" onmouseenter="upgradesFeedUpdate('')">
+					<H1> Upgrades </H1>
+					<div id="upgrades_rollover_display"></div>
 
-		<div id="upgrades_frame">
-			<div id="upgrades_pane" onmouseenter="upgradesFeedUpdate('')">
-				<H1> Upgrades </H1>
-				<div id="upgrades_rollover_display"></div>
+					<table style="width: 100%;">
+						<tbody>
+							<tr>
+								<td class="upgradeTableHeading" colspan=10 style="text-align: center">Egg Collector
+									Upgrades
+								</td>
+							</tr>
+							<tr>
 
-				<table style="width: 100%;">
-					<tbody>
-						<tr>
-							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Egg Collector Upgrades
-							</td>
-						</tr>
-						<tr>
-
-							<!--
+								<!--
 								Artificial Egg-teligence
 								Non-Euclidean Ovoid Theory
 								
 							-->
 
-							<td><button id="btnUpgradeEC1" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC1','EC',1,500,1)"
-									onmouseenter="upgradesFeedUpdate('Recycled Egg Cartons',500,'Collector Speed +1.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC2" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC2','EC',2,2000,1)"
-									onmouseenter="upgradesFeedUpdate('Orphan-Proof Bins',2000,'Collector Speed +1.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC3" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC3','EC',3,6000,1.5)"
-									onmouseenter="upgradesFeedUpdate('Egg Sorting Trebuchets',6000,'Collector Speed +1.5')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC4" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC4','EC',4,20000,2)"
-									onmouseenter="upgradesFeedUpdate('Multi-Egg Conveyor Lanes',20000,'Collector Speed +2.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC5" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC5','EC',5,50000,2)"
-									onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000,'Collector Speed +2.0')"
-									onmouseleave=" upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC6" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC6','EC',6,250000,3)"
-									onmouseenter="upgradesFeedUpdate('Non-Euclidean Ovoid Theory',250000,'Collector Speed +3.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC7" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC7','EC',7,750000,5)"
-									onmouseenter="upgradesFeedUpdate('Artificial Egg-telligence',750000,'Collector Speed +5.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC8" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC8','EC',8,1500000,20)"
-									onmouseenter="upgradesFeedUpdate('Dark Matter Topology ',1500000,'Collector Speed +20.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEC9" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEC9','EC',9,6000000,40)"
-									onmouseenter="upgradesFeedUpdate('Two Recycled Egg Cartons',6000000,'Collector Speed +40.0')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC1" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC1','EC',1,500,1)"
+										onmouseenter="upgradesFeedUpdate('Recycled Egg Cartons',500,'Collector Speed +1.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC2" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC2','EC',2,2000,1)"
+										onmouseenter="upgradesFeedUpdate('Orphan-Proof Bins',2000,'Collector Speed +1.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC3" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC3','EC',3,6000,1.5)"
+										onmouseenter="upgradesFeedUpdate('Egg Sorting Trebuchets',6000,'Collector Speed +1.5')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC4" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC4','EC',4,20000,2)"
+										onmouseenter="upgradesFeedUpdate('Multi-Egg Conveyor Lanes',20000,'Collector Speed +2.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC5" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC5','EC',5,50000,2)"
+										onmouseenter="upgradesFeedUpdate('Perpetual Yolk Envigorator',50000,'Collector Speed +2.0')"
+										onmouseleave=" upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC6" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC6','EC',6,250000,3)"
+										onmouseenter="upgradesFeedUpdate('Non-Euclidean Ovoid Theory',250000,'Collector Speed +3.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC7" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC7','EC',7,750000,5)"
+										onmouseenter="upgradesFeedUpdate('Artificial Egg-telligence',750000,'Collector Speed +5.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC8" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC8','EC',8,1500000,20)"
+										onmouseenter="upgradesFeedUpdate('Dark Matter Topology ',1500000,'Collector Speed +20.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEC9" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEC9','EC',9,6000000,40)"
+										onmouseenter="upgradesFeedUpdate('Two Recycled Egg Cartons',6000000,'Collector Speed +40.0')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
 
-						</tr>
-						<tr>
-							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Economy Upgrades</td>
-						</tr>
-						<tr>
-							<!--
+							</tr>
+							<tr>
+								<td class="upgradeTableHeading" colspan=10 style="text-align: center">Economy Upgrades
+								</td>
+							</tr>
+							<tr>
+								<!--
 								Word of Mouth
 								Local Advertising
 								Radio Advertisements								
@@ -401,92 +426,101 @@
 								Capital Injection
 
 							-->
-							<td><button id="btnUpgradeEU1" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU1','EU',1,1000,0.15)"
-									onmouseenter="upgradesFeedUpdate('Word of Mouth',1000,'Market Minimum +0.15')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU2" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU2','EU',2,4000,0.20)"
-									onmouseenter="upgradesFeedUpdate('Local Advertising',4000,'Market Minimum +0.20')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU3" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU3','EU',3,10000,0.25)"
-									onmouseenter="upgradesFeedUpdate('Morning Radio Show',10000,'Market Minimum +0.25')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU4" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU4','EU',4,30000,0.35)"
-									onmouseenter="upgradesFeedUpdate('Referral Program',30000,'Market Minimum +0.35')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU5" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU5','EU',5,65000,0.50)"
-									onmouseenter="upgradesFeedUpdate('Multi-Egg Marketing',65000,'Market Minimum +0.50')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU6" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU6','EU',6,350000,0.70)"
-									onmouseenter="upgradesFeedUpdate('Capital Injection',350000,'Market Minimum +0.70')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU7" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU7','EU',7,800000,1.25)"
-									onmouseenter="upgradesFeedUpdate('Egg Stocks',800000,'Market Minimum +1.25')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU8" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU8','EU',8,1750000,2.5)"
-									onmouseenter="upgradesFeedUpdate('Crypteggcurrency',1750000,'Market Minimum +2.5')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-							<td><button id="btnUpgradeEU9" class="upgradebtn"
-									onclick="purchaseUpgrade('btnUpgradeEU9','EU',9,4000000,5.0)"
-									onmouseenter="upgradesFeedUpdate('The Barter System',4000000,'Market Minimum +5.00')"
-									onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
-						</tr>
-						<tr>
-							<td class="upgradeTableHeading" colspan=10 style="text-align: center">Automation Upgrades
-							</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-					</tbody>
-				</table>
+								<td><button id="btnUpgradeEU1" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU1','EU',1,1000,0.15)"
+										onmouseenter="upgradesFeedUpdate('Word of Mouth',1000,'Market Minimum +0.15')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU2" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU2','EU',2,4000,0.20)"
+										onmouseenter="upgradesFeedUpdate('Local Advertising',4000,'Market Minimum +0.20')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU3" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU3','EU',3,10000,0.25)"
+										onmouseenter="upgradesFeedUpdate('Morning Radio Show',10000,'Market Minimum +0.25')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU4" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU4','EU',4,30000,0.35)"
+										onmouseenter="upgradesFeedUpdate('Referral Program',30000,'Market Minimum +0.35')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU5" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU5','EU',5,65000,0.50)"
+										onmouseenter="upgradesFeedUpdate('Multi-Egg Marketing',65000,'Market Minimum +0.50')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU6" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU6','EU',6,350000,0.70)"
+										onmouseenter="upgradesFeedUpdate('Capital Injection',350000,'Market Minimum +0.70')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU7" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU7','EU',7,800000,1.25)"
+										onmouseenter="upgradesFeedUpdate('Egg Stocks',800000,'Market Minimum +1.25')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU8" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU8','EU',8,1750000,2.5)"
+										onmouseenter="upgradesFeedUpdate('Crypteggcurrency',1750000,'Market Minimum +2.5')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+								<td><button id="btnUpgradeEU9" class="upgradebtn"
+										onclick="purchaseUpgrade('btnUpgradeEU9','EU',9,4000000,5.0)"
+										onmouseenter="upgradesFeedUpdate('The Barter System',4000000,'Market Minimum +5.00')"
+										onmouseleave="upgradesFeedUpdate('')">🥚</button></td>
+							</tr>
+							<tr>
+								<td class="upgradeTableHeading" colspan=10 style="text-align: center">Automation
+									Upgrades
+								</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
 
 
 
 
 
-				<div id="detail_stats_display">
-					<p id="collector_speed">Collector Speed: 0</p>
-					<p id="market_max"> Market Max: 0 </p>
-					<p id="market_min">Market Min: 0</p>
+					<div id="detail_stats_display">
+						<p id="collector_speed">Collector Speed: 0</p>
+						<p id="market_max"> Market Max: 0 </p>
+						<p id="market_min">Market Min: 0</p>
 
+					</div>
+
+					<div class="btn-group" style="padding-bottom: 20px;">
+
+					</div>
+					<br>
+					<div class="btn-group">
+						<button id="btn_settings_back" class="btn" style="width:33.3%"
+							onclick="goto_mainframe()">Back</button>
+					</div>
 				</div>
 
-				<div class="btn-group" style="padding-bottom: 20px;">
 
-				</div>
-				<br>
-				<div class="btn-group">
-					<button id="btn_settings_back" class="btn" style="width:33.3%"
-						onclick="goto_mainframe()">Back</button>
-				</div>
 			</div>
-
 
 		</div>
 
-	</div>
-
-	<div id="third_panel_right" class="panel"> </div>
+		<div id="third_panel_right" class="panel"> </div>
 </body>
 
 <script>
+
+
+	//important links
+	//http://www.network-science.de/ascii/ Ascii generator
+
+
+
+
 
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 	/*
@@ -500,8 +534,12 @@
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//Variables
+
+	//System vars
+	var tickrate = 1000;
+
+	//Egg vars
 	var eggTotal = 0;
-	var tickrate = 1;
 	var eggpertick = 0;
 
 	//collector vars
@@ -524,6 +562,8 @@
 	var upgradeFlagEC = new Array(10).fill(false);
 	var upgradeFlagEU = new Array(10).fill(false);
 	var upgradeFlagAM = new Array(10).fill(false);
+
+
 
 
 	//upgrade vars
@@ -569,6 +609,12 @@
 
 
 	];
+
+
+	//ticker vars
+	var news = new Array(2);
+	news = ["Is this news? ", "Yes it is other Barry, yes it is."];
+	var nextNewsItem = "";
 
 
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -763,6 +809,66 @@
 
 
 	}
+
+
+
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+	/*
+	 d888888b d888888b  .o88b. db   dD d88888b d8888b. 
+	 `~~88~~'   `88'   d8P  Y8 88 ,8P' 88'     88  `8D 
+		88       88    8P      88,8P   88ooooo 88oobY' 
+		88       88    8b      88`8b   88~~~~~ 88`8b   
+		88      .88.   Y8b  d8 88 `88. 88.     88 `88. 
+		YP    Y888888P  `Y88P' YP   YD Y88888P 88   YD 
+												  
+	*/
+	//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+	var newsElement = document.getElementById("news_ticker");
+
+	function animate(element) {
+
+		let elementWidth = element.offsetWidth;
+		let parentWidth = element.parentElement.offsetWidth;
+		let flag = 0;
+
+		setInterval(() => {
+			element.style.marginLeft = --flag + "px";
+
+			if (elementWidth == -flag) {
+				flag = parentWidth;
+			}
+			
+		}, 15);
+	}
+
+	animate(newsElement);
+
+	function nextNews() {
+
+		var newsItem = nextNewsItem;
+		console.info("NewsItem: " + newsItem)
+		document.getElementById("news_ticker").innerHTML = newsItem;
+
+		prepareNextNewsItem("random");
+
+	}
+
+	function prepareNextNewsItem(input) {
+
+		if (input == "random") {
+
+			nextNewsItem = news[Math.floor(Math.random() * news.length)]
+
+		}
+		else {
+
+			nextNewsItem = input;
+
+		}
+	}
+
+
 
 
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -1024,12 +1130,6 @@
 
 	}
 
-
-
-
-
-
-
 	//------------------------------------------------------------------------------------------------------------------------------------------------------//
 	/*
 		d8888b. d888888b .d8888. d8888b. db       .d8b.  db    db 
@@ -1283,7 +1383,7 @@
 		checkEggPrice();
 
 
-	}, 1000);
+	}, tickrate);
 
 
 
