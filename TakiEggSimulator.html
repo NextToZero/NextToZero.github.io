@@ -3,30 +3,47 @@
 
 <head>
 	<style>
-		/* Primary Styling*/
+		
+		/*
+		Overview: 
+		Three panels in a 25/50/25 configuration
+
+		Color Palettes -> https://lospec.com/palette-list/bloodmoon21
+
+		#130310
+		#1d0518
+		#270721
+		#3c0921
+		#520b20
+		#7d0f1f 
+		#a8141d
+		#d3181c
+		#ff252b
+
+		*/
+
 		body {
-			background-color: black;
-			color: gray;
+			background-color: #130310;
+			color: #ff252b;
 
 		}
 
 
 
 		h1 {
-			color: red;
+			color: ff252b;
 			text-align: center;
 
 		}
 
-		/* Distinct Styling */
+		/* Main Panels*/		
 
 		.panel {
 
 			width: 25%;
 			display: inline-block;
 			opacity: 0.9;
-			border-width: 3px;
-			border-color: red;
+			border-radius: 5px;
 		}
 
 		#third_panel_mid {
@@ -38,7 +55,7 @@
 
 
 		#main_frame>div {
-			background-color: #242424;
+			background-color: #1d0518;
 			opacity: 0.90;
 			margin-bottom: 10px;
 			width: 100%;
@@ -62,12 +79,37 @@
 		}
 
 		#div_data {
-			height: auto;
+			height: 50px;
 			width: 100%;
-			background-color: #242424;
-			display: inline-flex;
+			
+			
 
 		}
+
+		#div_data_img{
+
+			z-index: -1;
+			width: 100%;
+  			height: 100%;
+			position: absolute;
+		}
+
+		#datar1{
+
+			position:absolute;
+			z-index: 1;
+
+		}
+
+		#datar1>p {
+			color: red;
+			z-index: 1;
+			padding-left: 20px;
+			display: inline;
+			
+		}
+
+
 
 		#div_display {
 			height: 150px;
@@ -157,12 +199,7 @@
 			transform: translateY(4px);
 		}
 
-		#datar1>p {
-			color: red;
-			float: left;
-			padding-left: 20px;
-		}
-
+	
 		#settings_frame {
 			display: none;
 
@@ -281,6 +318,7 @@
 			<h5> The Eggventure Capitalist™️ update! v0.0.6c (Now with 20% bugs by weight!)</h5>
 		</div>
 		<div id="div_data">
+			<img src="img/img_mockup.png" id="div_date_img" > </img>
 			<div id="datar1">
 				<p id="egg_display"> Eggs: 0 </p>
 				<p id="collector_display">Collectors: 0</p>
